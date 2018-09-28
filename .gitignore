@@ -7,3 +7,6 @@
 /server/Demo1/packages
 /server/Demo1.Tests/obj/Debug
 /server/Demo1.Tests/bin/Debug
+/tools
+/server/.vs/Demo1/v15
+/server/packages
