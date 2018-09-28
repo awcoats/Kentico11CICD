@@ -4,3 +4,6 @@
 
 /server/Demo1/.vs/Demo1/v15
 /server/Demo1/obj/Debug
+/server/Demo1/packages
+/server/Demo1.Tests/obj/Debug
+/server/Demo1.Tests/bin/Debug
