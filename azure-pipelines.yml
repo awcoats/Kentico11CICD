@@ -40,5 +40,10 @@ steps:
 
 ## Pester tests.
 # This updates pester not always necessary but worth noting
+# 1. URL exists
+# 2. HTTP exists
+# 3. HTTP redirect works
+# 4. Certificate thumbprint
+# 5. Expiration date
 
 
