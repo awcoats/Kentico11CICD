@@ -20,17 +20,17 @@ variables:
 
 #
 # Build.ps1 downloads nuget.exe
-#
+
 - task: PowerShell@2
   inputs:
     targetType: 'filePath' # Optional. Options: filePath, inline
     filePath: '.\build.ps1'
     arguments: '-Target CIBuild'
-    errorActionPreference: 'stop' 
-    failOnStderr: true # Optional
-    ignoreLASTEXITCODE: true # Optional
-    #pwsh: false # Optional
-    #workingDirectory: # Optional
+  #   errorActionPreference: 'stop' 
+  #   failOnStderr: true # Optional
+  # ignoreLASTEXITCODE: true # Optional
+  #   #pwsh: false # Optional
+  #   #workingDirectory: # Optional
 
 
 # - task: VSBuild@1
