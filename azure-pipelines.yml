@@ -22,6 +22,7 @@ variables:
 # Build.ps1 downloads nuget.exe
 
 - task: PowerShell@2
+  displayName: Cake build
   inputs:
     targetType: 'filePath' # Optional. Options: filePath, inline
     filePath: '.\build.ps1'
