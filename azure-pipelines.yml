@@ -25,8 +25,8 @@ steps:
   displayName: Pack Release
   inputs:
     targetType: filePath
-    filePath: 'etc\demo.ps1'
-    arguments: '-Configuration $(BuildConfiguration) -DestinationDir $(Build.ArtifactStagingDirectory) -StandardZipFormat $false -SkipZip $false -SkipConfigRename $false -compressionLevel 5'
+    filePath: '.\build.ps1'
+    arguments: '-Target CIBuild'
     workingDirectory: 'tools'
 
 
