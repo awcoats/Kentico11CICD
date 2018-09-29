@@ -12,15 +12,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-# - task: NuGetToolInstaller@0
-
-# - task: NuGetCommand@2
-#   inputs:
-#     restoreSolution: '$(solution)'
 
 #
 # Build.ps1 downloads nuget.exe
-
+#
 - task: PowerShell@2
   displayName: Run Cake
   inputs:
@@ -28,16 +23,22 @@ steps:
     filePath: '.\build.ps1'
     arguments: '-Target CIBuild'   
 
-
-# - task: VSBuild@1
-#   displayName: Hello there
-#   inputs:
-#     solution: '$(solution)'
-#     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-#     platform: '$(buildPlatform)'
-#     configuration: '$(buildConfiguration)'
+- task: PowerShell@2
+  displayName: Run Pester
+  inputs:
+    targetType: filePath
+    filePath: '.\etc\demo.ps1'    
 
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+## TODO deploy using MSDeploy
+
+## Cypress.io tests
+
+## Pester tests.
+# This updates pester not always necessary but worth noting
+
+
