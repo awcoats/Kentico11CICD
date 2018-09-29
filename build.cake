@@ -48,6 +48,14 @@ Task("Build")
     }
 });
 
+
+
+Task("CIBuild")
+    .IsDependentOn("Run-Unit-Tests")
+    .Does(() =>
+{
+});
+
 Task("Run-Unit-Tests")
     .IsDependentOn("Build")
     .Does(() =>

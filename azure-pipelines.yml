@@ -11,8 +11,8 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@0
+# steps:
+# - task: NuGetToolInstaller@0
 
 # - task: NuGetCommand@2
 #   inputs:
@@ -25,11 +25,10 @@ steps:
   inputs:
     targetType: 'filePath' # Optional. Options: filePath, inline
     filePath: '.\build.ps1'
-    #arguments: # Optional
-    #script: '# Write your powershell commands here.' # Required when targetType == Inline
+    arguments: '-Target CIBuild'
     errorActionPreference: 'stop' 
-    #failOnStderr: false # Optional
-    #ignoreLASTEXITCODE: false # Optional
+    failOnStderr: true # Optional
+    ignoreLASTEXITCODE: true # Optional
     #pwsh: false # Optional
     #workingDirectory: # Optional
 
@@ -41,10 +40,10 @@ steps:
 #     platform: '$(buildPlatform)'
 #     configuration: '$(buildConfiguration)'
 
-# - task: VSTest@2
-#   inputs:
-#     platform: '$(buildPlatform)'
-#     configuration: '$(buildConfiguration)'
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
 # Publish Build Artifacts
 # Publish build artifacts to Azure Artifacts/TFS or a file share
