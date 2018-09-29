@@ -17,17 +17,20 @@ steps:
 # Build.ps1 downloads nuget.exe
 #
 - task: PowerShell@2
-  displayName: Run Cake
+  displayName: Run Cake (Task="CIBUILD")
   inputs:
     targetType: filePath
     filePath: '.\build.ps1'
-    arguments: '-Target CIBuild'   
+    arguments: '-Target CIBuild'  
+    
+  
 
 # Publish Test Results to Azure Pipelines/TFS
 - task: PublishTestResults@2
+  displayName: Publish Unit Tests Results
   inputs:
-    testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
-    testResultsFiles: 'TestResult.xml' 
+    testResultsFormat: 'NUnit3' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '**/TestResult.xml' 
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     #mergeTestResults: false # Optional
     #testRunTitle: # Optional
