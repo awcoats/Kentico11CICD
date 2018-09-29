@@ -5,15 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo1.Tests
+namespace Demo1.UnitTests
 {
     [TestFixture]
-    public class DemoTests
+    public class Class1
     {
         [Test]
-        public void IloveUnitTests()
+        public void AUnitTests()
         {
 
         }
+
+        [Test]
+        public void AUnitTests2()
+        {
+
+        }
+
     }
 }
