@@ -21,21 +21,22 @@ variables:
 #
 # Build.ps1 downloads nuget.exe
 
-- task: PowerShell@2
-  displayName: Pack Release
-  inputs:
-    targetType: filePath
-    filePath: 'etc\demo.ps1'
-    arguments: '-Configuration $(BuildConfiguration) -DestinationDir $(Build.ArtifactStagingDirectory) -StandardZipFormat $false -SkipZip $false -SkipConfigRename $false -compressionLevel 5'
-    workingDirectory: 'tools'
-
-
-# - task: VSBuild@1
+# - task: PowerShell@2
+#   displayName: Pack Release
 #   inputs:
-#     solution: '$(solution)'
-#     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-#     platform: '$(buildPlatform)'
-#     configuration: '$(buildConfiguration)'
+#     targetType: filePath
+#     filePath: 'etc\demo.ps1'
+#     arguments: '-Configuration $(BuildConfiguration) -DestinationDir $(Build.ArtifactStagingDirectory) -StandardZipFormat $false -SkipZip $false -SkipConfigRename $false -compressionLevel 5'
+#     workingDirectory: 'tools'
+
+
+- task: VSBuild@1
+  displayName: Hello there
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
   inputs:
