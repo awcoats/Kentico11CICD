@@ -11,7 +11,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-# steps:
+steps:
 # - task: NuGetToolInstaller@0
 
 # - task: NuGetCommand@2
@@ -21,54 +21,24 @@ variables:
 #
 # Build.ps1 downloads nuget.exe
 
-# - task: PowerShell@2
-#   displayName: Pack Release
-#   inputs:
-#     targetType: filePath
-#     filePath: 'etc\demo.ps1'
-#     arguments: '-Configuration $(BuildConfiguration) -DestinationDir $(Build.ArtifactStagingDirectory) -StandardZipFormat $false -SkipZip $false -SkipConfigRename $false -compressionLevel 5'
-#     workingDirectory: 'tools'
-
-
-- task: VSBuild@1
-  displayName: Hello there
+- task: PowerShell@2
+  displayName: Pack Release
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    targetType: filePath
+    filePath: 'etc\demo.ps1'
+    arguments: '-Configuration $(BuildConfiguration) -DestinationDir $(Build.ArtifactStagingDirectory) -StandardZipFormat $false -SkipZip $false -SkipConfigRename $false -compressionLevel 5'
+    workingDirectory: 'tools'
+
+
+# - task: VSBuild@1
+#   displayName: Hello there
+#   inputs:
+#     solution: '$(solution)'
+#     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+#     platform: '$(buildPlatform)'
+#     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-# Publish Build Artifacts
-# Publish build artifacts to Azure Artifacts/TFS or a file share
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-#     artifactName: 'drop' 
-#     publishLocation: 'Container' # Options: container, filePath
-#     targetPath: # Required when publishLocation == FilePath
-#     #parallel: true # Optional
-#     #parallelCount: 8 # Optional
-
-# - task: AzureRmWebAppDeployment@3
-#   inputs:
-#     azureSubscription: '<Azure service connection>'
-#     WebAppName: '<Name of web app>'
-#     Package: $(System.ArtifactsDirectory)/**/*.zip
-
-# - powershell: string  # contents of the script to run
-#   displayName: string  # friendly name displayed in the UI
-#   name: string  # identifier for this step (no spaces allowed)
-#   errorActionPreference: enum  # see below
-#   ignoreLASTEXITCODE: boolean  # see below
-#   failOnStderr: boolean  # if the script writes to stderr, should that be treated as the step failing?
-#   workingDirectory: string  # initial working directory for the step
-#   condition: string
-#   continueOnError: boolean  # 'true' if future steps should run even if this step fails; defaults to 'false'
-#   enabled: boolean  # whether or not to run this step; defaults to 'true'
-#   timeoutInMinutes: number
-#   env: { string: string }  # list of environment variables to add
