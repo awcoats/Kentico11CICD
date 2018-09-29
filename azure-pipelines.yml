@@ -22,12 +22,11 @@ steps:
 # Build.ps1 downloads nuget.exe
 
 - task: PowerShell@2
-  displayName: Pack Release
+  displayName: Run Cake
   inputs:
     targetType: filePath
     filePath: '.\build.ps1'
-    arguments: '-Target CIBuild'
-    workingDirectory: 'tools'
+    arguments: '-Target CIBuild'   
 
 
 # - task: VSBuild@1
