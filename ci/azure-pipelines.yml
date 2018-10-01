@@ -47,7 +47,7 @@ steps:
   displayName: Publish Unit Tests Results
   inputs:
     testResultsFormat: NUnit
-    testResultsFiles: '**\UnitTestsResults.xml' 
+    testResultsFiles: '**\TestResults.xml' 
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     mergeTestResults: false # Optional
     testRunTitle: # Optional
