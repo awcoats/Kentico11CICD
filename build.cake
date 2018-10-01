@@ -9,7 +9,7 @@
 #addin "Cake.FileHelpers"
 #tool "nuget:?package=ReportGenerator&version=2.4.5"
 #tool "nuget:?package=OpenCover"
-#tool "nuget:?package=NUnit.ConsoleRunner&version=3.6"
+#tool "nuget:?package=NUnit.ConsoleRunner"
 
 using System.Net;
 
@@ -205,7 +205,7 @@ Task("UnitTests")
 	WriteProgressMessage("Running unit tests"); 
 	NUnit3(_unitTestsLocation, new NUnit3Settings
 	{
-		OutputFile= "./server/Demo1.UnitTests/bin/"+_configuration+"/UnitTestsResults.xml"
+		Results = new[] { new NUnit3Result { FileName = "./server/Demo1.UnitTests/bin/"+_configuration+"/TestResults.xml" } }
 	});
 });
 

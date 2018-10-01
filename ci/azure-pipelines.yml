@@ -46,7 +46,7 @@ steps:
 - task: PublishTestResults@2
   displayName: Publish Unit Tests Results
   inputs:
-    testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFormat: NUnit
     testResultsFiles: '**\UnitTestsResults.xml' 
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     mergeTestResults: false # Optional
