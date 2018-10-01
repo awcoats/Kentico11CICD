@@ -32,6 +32,17 @@ steps:
     filePath: '.\build.ps1'
     arguments: '-Action CIBuild'  
 
+    - task: PublishTestResults@2
+  displayName: Publish Unit Tests Results
+  inputs:
+    testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '.\Test*.xml' 
+    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+    mergeTestResults: false # Optional
+    testRunTitle: # Optional
+    buildPlatform: # Optional
+    buildConfiguration: # Optional
+    publishRunAttachments: true # Optional
 
 # 
 # Deploy
@@ -44,17 +55,7 @@ steps:
     arguments: ' -Action Deploy -PublishSettings .\etc\kenticocicddemo.PublishSettings'    
 
 # Publish Test Results to Azure Pipelines/TFS
-# - task: PublishTestResults@2
-#   displayName: Publish Unit Tests Results
-#   inputs:
-#     testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
-#     testResultsFiles: '**/Test*.xml' 
-    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-    #mergeTestResults: false # Optional
-    #testRunTitle: # Optional
-    #buildPlatform: # Optional
-    #buildConfiguration: # Optional
-    #publishRunAttachments: true # Optional
+
 
 # - task: PowerShell@2
 #   displayName: Run Pester
