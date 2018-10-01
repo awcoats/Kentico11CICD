@@ -1,8 +1,15 @@
-$assemblyNunitEngine = 'C:\Dev\Kentico11CICD\\server\packages\NUnit3TestAdapter.3.10.0\build\net35\nunit.engine.api.dll';
-$assemblyNunitWriter = 'C:\Dev\Kentico11CICD\server\packages\NUnit.Extension.NUnitV2ResultWriter.3.6.0\tools\nunit-v2-result-writer.dll';
-$inputV3Xml = 'C:\Dev\Kentico11CICD\server\Demo1.UnitTests\bin\Debug\TestResults.xml';
-$outputV2Xml = 'C:\Dev\Kentico11CICD\\server\Demo1.UnitTests\bin\Debug\TestResultsV2.xml';
- 
+
+
+$dir =   (Split-Path -parent $PSCommandPath) -replace '\ci',''
+
+
+$assemblyNunitEngine = $dir + '\nunit.engine.api.dll';
+$assemblyNunitWriter = $dir + '\nunit-v2-result-writer.dll';
+$inputV3Xml = $dir + '.\..\server\Demo1.UnitTests\bin\Debug\TestResults.xml';
+$outputV2Xml = $dir + '.\..\server\Demo1.UnitTests\bin\Debug\TestResultsV2.xml';
+
+
+
 Add-Type -Path $assemblyNunitEngine;
 Add-Type -Path $assemblyNunitWriter;
 $xmldoc = New-Object -TypeName System.Xml.XmlDataDocument;
