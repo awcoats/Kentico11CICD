@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  block vars
+  head(id='head')
+    include ../includes/_head.pug
+    title #{pageTitle}
+    block head
+
+  body
+    form
+      .pageWrap
+        include ../includes/_headerMain.pug
+        main
+          block content
+
+        include ../includes/_footerMain.pug
+

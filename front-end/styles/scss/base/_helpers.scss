@@ -1,0 +1,43 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+/*
+* The function below will generate color and background color classes for each color defined
+* in the palettes color map within styles/scss/abstracts/base/_helpers.scss
+*
+* USAGE (pug):
+  h1.h-colorGray700
+  div.h-fillGray50
+*/
+//loop through each color in the $palettes map in style/scss/_variables.scss and add the modifiers
+@each $palette in $palettes {
+    //Grab/Define the main colors e.g. "allports"
+    $baseColorName: to-string(nth($palette, 1));
+    //Grab/Define the modifiers, e.g. "100"
+    $modifiers: nth($palette, 2);
+    //Generate helper classes
+    @each $shade, $value in $modifiers {
+        //Generate text color classes
+        .h-color#{capitalize($baseColorName)}#{$shade} {
+            color: $value !important;
+        }
+        //Generate text color classes
+        .h-fill#{capitalize($baseColorName)}#{$shade} {
+            background-color: $value !important;
+        }
+    }
+}
+
+//manually adding white/black classes
+.h-colorWhite {
+    color:$white !important;
+}
+.h-fillWhite {
+    background:$white !important;
+}
+.h-colorBlack {
+    color:$black !important;
+}
+.h-fillBlack {
+    background:$black !important;
+}

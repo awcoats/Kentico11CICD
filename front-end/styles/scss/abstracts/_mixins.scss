@@ -1,0 +1,96 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+//mixin for use in media queries or anyplace else extending doesnt make sense
+@mixin noPhatBottom {
+    & > *:last-child,
+    & > *:last-child > *:last-child,
+    & > *:last-child > *:last-child > *:last-child {
+      margin-bottom: 0 !important;
+    }
+}
+
+//for extending
+%noPhatBottom {
+    @include noPhatBottom;
+}
+
+/* FLUID FONT SIZE
+========================================================================== */
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+/* ASPECT RATIO
+========================================================================== */
+@mixin aspect-ratio($arglist...
+/*$ratio or $width, $height*/
+
+) {
+   $map: keywords($arglist);
+   $height: map-get($map, height) or nth-or-null($arglist, 2);
+   $width: map-get($map, width) or nth-or-null($arglist, 1);
+   $ratio: map-get($map, ratio) or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
+   $padding: 1/$ratio * 100%;
+   &:after {
+      display: block;
+      padding-bottom: $padding;
+
+      content: '';
+   }
+}
+
+// Helper function 
+// Return null rather than throwing an error if index is outside list range.    
+@function nth-or-null($list, $index) {
+   @return if(length($list) >=$index, nth($list, $index), null);
+}

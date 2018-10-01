@@ -1,0 +1,92 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup,
+ul,
+ol,
+dl,
+blockquote,
+p,
+address,
+figure,
+pre,
+{
+    margin-top: 0;
+    margin-bottom: $marginBase;
+}
+
+
+
+
+/**
+ * Basic typography style for copy text
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: $headingsFontFamily;
+    font-weight: $headingsFontWeight;
+    line-height: $headingsLineHeight;
+}
+
+h1,
+.h1 {
+    font-size:$h1Size;
+}
+
+h2,
+.h2 {
+    font-size:$h2Size;
+}
+
+h3,
+.h3 {
+    font-size:$h3Size;
+}
+
+h4,
+.h4 {
+    font-size:$h4Size;
+}
+
+h5,
+.h5 {
+    font-size:$h5Size;
+}
+
+h6,
+.h6 {
+    font-size:$h6Size;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: $marginBase;
+    border: 0;
+    border-top: 1px solid palette(gray, 100);
+}
+
+a {
+    transition: all .25s ease-in-out;
+    color: $linkColorBase;
+    text-decoration: none;
+    background-color: transparent; // Remove the gray background on active links in IE 10.
+    -webkit-text-decoration-skip: objects; // Remove gaps in links underline in iOS 8+ and Safari 8+.
+    @include hover {
+        color: $linkColorHoverBase;
+        text-decoration: underline;
+    }
+}

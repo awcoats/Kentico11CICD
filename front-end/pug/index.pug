@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+	head
+		include includes/_head.pug
+		title [client name]
+	body
+		main
+			.container
+				table(width="100%").table.table-striped
+					thead
+						tr
+							th #
+							th Page Template
+							th Info
+					tbody
+						tr
+							th(scope='row') 000
+							td
+								a(href='styleguide.html') Styleguide
+							td in progress
+						tr
+							th(scope='row') 001
+							td
+								a(href='error-404.html') Error Page - 404
+							td in progress
+						tr
+							th(scope='row') 001
+							td
+								a(href='error-500.html') Error Page - 500
+							td in progress
+						tr
+							th(scope='row') 002
+							td
+								a(href='home.html') Home
+							td in progress

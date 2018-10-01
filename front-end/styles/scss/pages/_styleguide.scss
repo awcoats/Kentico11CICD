@@ -1,0 +1,790 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the styleguide.
+// -----------------------------------------------------------------------------
+
+/*
+* We define our styleguide specific variables here as we can't anticipate the build structure for any
+* given project.
+* So anything core to the styleguide is encapsulated here while all of the content and examples should
+* inherit from the project stylesheets/variables, etc.
+*
+* !!!!!! Do not style anything globally here like headings, paragraphs, etc. We want all of those things
+* to inherit into the examples
+*/
+
+$sg-colorWhite: #ffffff;
+$sg-colorBlack: #000000;
+$sg-colorGray: #959595;
+$sg-colorGrayLight: #cacaca;
+$sg-colorGrayLighter: #f5f5f5;
+$sg-colorGrayLightest: #fafafa;
+$sg-colorGrayDark: #707070;
+$sg-colorGrayDarker: #616161;
+$sg-colorGrayDarkest: #434343;
+$sg-colorSuccess: #42be2a;
+$sg-colorInfo: #5bc0de;
+$sg-colorWarning: #f9b106;
+$sg-colorDanger: #e31836;
+$sg-headerBackground:$sg-colorBlack;
+$sg-headerColor:$sg-colorWhite;
+$sg-spacer:1rem;
+
+.sg-colorGray {
+    color: $sg-colorGray;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorGrayLight {
+    color: $sg-colorGrayLight;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorGrayLighter {
+    color: $sg-colorGrayLighter;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorGrayLightest {
+    color: $sg-colorGrayLightest;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorGrayDark {
+    color: $sg-colorGrayDark;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorGrayDarker {
+    color: $sg-colorGrayDarker;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorSuccess {
+    color: $sg-colorSuccess;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorInfo {
+    color: $sg-colorInfo;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorWarning {
+    color: $sg-colorWarning;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.sg-colorDanger {
+    color: $sg-colorDanger;
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+//some icons not dependent on any library
+[class*='sg-icon'] {
+    &:before {
+        display: inline-block; //justify-content: center;
+        //align-items: center;
+        font-family: "Operator Mono SSm A", "Operator Mono SSm B", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
+        font-weight: bold;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin-right: .4em; //width and height content + padding + border
+        width: calc(.7em + 10px);
+        height: calc(.7em + 10px);
+        line-height: .7em;
+        border: 2px solid;
+        text-align: center;
+        border-radius: 50%;
+        padding: 3px;
+        vertical-align: .05em;
+    }
+}
+
+.sg-iconInfo:before {
+    content: 'i';
+}
+
+.sg-iconAttention:before {
+    content: '!';
+}
+
+.sg {
+    //lots of importants here to override anything in the main build
+    max-width: 1200px !important;
+    margin-top: 0 !important;
+    margin-right: auto !important;
+    margin-bottom: 0 !important;
+    margin-left: auto !important;
+    padding-right: 26px !important;
+    padding-left: 26px !important;
+    background: transparent !important;
+}
+
+.sg-topLink {
+    background: rgba($sg-colorGrayDarkest, .5);
+    padding: 8px;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    color: $sg-colorWhite;
+    text-align: center;
+    margin-top: -23px;
+    text-decoration: none;
+    border-radius: 2px 0 0 2px;
+    &:before {
+        content: '\2191';
+        display: block;
+        padding: 5px 8px;
+    }
+    &:after {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        height: 0;
+        content: '';
+        border-top: 1px dotted $sg-colorWhite;
+        opacity: .75;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        color: $sg-colorWhite;
+        text-decoration: none;
+        background: $sg-colorGrayDarkest;
+    }
+}
+
+.sg-header {
+    background: $sg-headerBackground;
+    display: flex;
+    color: #fff;
+    height: 50px;
+    position: relative;
+    z-index: 999;
+    transition: all 0.3s ease-out;
+    [class*="js-headerFixed"] & {
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+    .js-headerFixed--up & {
+        top: -50px;
+    }
+    .js-headerFixed--down &,
+    .js-navActive & {
+        top: 0;
+        background: rgba($sg-headerBackground, .75);
+    }
+}
+
+.sg-headerTitle {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sg-navToggle {
+    z-index: 10;
+    cursor: pointer;
+    padding-right: 16px;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    background: rgba($sg-colorWhite, .15);
+    .sg-navIcon {
+        width: 26px;
+        height: 26px;
+        position: relative;
+        margin: 0 auto;
+    }
+    .sg-navPatty {
+        position: absolute;
+        left: 0;
+        width: 26px;
+        height: 3px;
+        transform: translate3d(0, 0, 0);
+        transition: all 300ms cubic-bezier(.17, .67, .6, 1.3);
+        background: $sg-colorGrayLighter;
+        &:nth-child(1) {
+            top: 6px;
+            left: -15px;
+            opacity: 0;
+            transition-delay: 300ms;
+        }
+        &:nth-child(2) {
+            top: 12px;
+            left: -15px;
+            opacity: 0;
+            transition-delay: 200ms;
+        }
+        &:nth-child(3) {
+            top: 18px;
+            left: -15px;
+            opacity: 0;
+            transition-delay: 100ms;
+        }
+        &:nth-child(4) {
+            top: 6px;
+            opacity: 1;
+            transition-delay: 300ms;
+        }
+        &:nth-child(5) {
+            top: 12px;
+            opacity: 1;
+            transition-delay: 200ms;
+        }
+        &:nth-child(6) {
+            top: 18px;
+            opacity: 1;
+            transition-delay: 100ms;
+        }
+    }
+    &:hover {
+        background: rgba($sg-colorWhite, .25);
+        .sg-navPatty {
+            transform: translate3d(15px, 0, 0);
+            &:nth-child(1) {
+                opacity: 1;
+                transition-delay: 100ms;
+            }
+            &:nth-child(2) {
+                opacity: 1;
+                transition-delay: 200ms;
+            }
+            &:nth-child(3) {
+                opacity: 1;
+                transition-delay: 300ms;
+            }
+            &:nth-child(4) {
+                opacity: 0;
+                transition-delay: 100ms;
+            }
+            &:nth-child(5) {
+                opacity: 0;
+                transition-delay: 200ms;
+            }
+            &:nth-child(6) {
+                opacity: 0;
+                transition-delay: 300ms;
+            }
+        }
+    }
+    &.js-active {
+        .sg-navPatty {
+            background: $sg-colorWhite;
+            &:nth-child(1) {
+                opacity: 1;
+                transform: rotateZ(45deg) translate(18px, -4px);
+                margin-top: -5px;
+            }
+            &:nth-child(3) {
+                opacity: 1;
+                transform: rotateZ(-45deg) translate(12px, 9px);
+                margin-top: -5px;
+            }
+            &:nth-child(2),
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6) {
+                opacity: 0;
+            }
+        }
+        &:hover {
+            .sg-navPatty {
+                &:nth-child(4),
+                &:nth-child(5),
+                &:nth-child(6) {
+                    opacity: 0;
+                }
+            }
+        }
+        &.rotating {
+            .sg-navToggle {
+                animation: spin 800ms;
+                transform-origin: 50% 30%;
+            }
+        }
+    }
+    &.loading {
+        .sg-navPatty {
+            opacity: 0 !important;
+            &:nth-child(5) {
+                top: -11px;
+                opacity: 1 !important;
+                background-color: transparent;
+                border: 3px solid $sg-colorGrayLighter;
+                border-top-color: transparent;
+                border-left-color: transparent;
+                border-radius: 50%;
+                width: 26px;
+                height: 26px;
+                animation: spin 300ms infinite linear;
+            }
+        }
+    }
+}
+
+.sg-mainNav {
+    font-size: 14px;
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    background: $sg-colorGrayDarkest;
+    z-index: 999;
+    padding: 0;
+    color: $sg-colorWhite;
+    opacity: 0;
+    transform: translate(-300px, 0);
+    transition: all 0.3s ease-out;
+    margin: 0;
+    .js-navActive & {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+.sg-mainNav-item {
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-top: 1px solid;
+        opacity: .15;
+    }
+}
+
+.sg-mainNav-link {
+    display: block;
+    padding: 16px;
+    color: $sg-colorWhite;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover,
+    &:active,
+    &:focus {
+        color: $sg-colorWhite;
+        text-decoration: none;
+    }
+}
+
+//style the dropdown toggles which are spans instead of links
+span.sg-mainNav-link {
+    display: flex;
+    justify-content: space-between;
+    &:after {
+        content: '\00b7 \00b7 \00b7';
+        font-size: 24px;
+        font-weight: bold;
+        height: 1em;
+        width: 1em;
+        line-height: 1em;
+        text-align: center;
+        transition: all 0.3s ease-out;
+    }
+    .js-subActive & {
+        &:after {
+            //font-size:inherit;
+            content: '\00d7';
+            font-weight: normal;
+        }
+    }
+}
+
+.sg-mainNav-subNav {
+    padding-left: $sg-spacer;
+    list-style: none;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all .35s;
+    .js-subActive & {
+        opacity: 1;
+        max-height: 1000px;
+    }
+}
+
+.sg-mainNav-subItem {}
+
+.sg-mainNav-subLink {
+    color: $sg-colorWhite;
+    padding: 16px;
+    display: block;
+    &:hover,
+    &:active,
+    &:focus {
+        color: $sg-colorWhite;
+        text-decoration: none;
+    }
+}
+
+.sg-pageMask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    background: rgba($sg-colorBlack, .5);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+    visibility: hidden;
+    .js-navActive & {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.sg-color,
+.sg-size,
+.sg-fontFam,
+.sg-bgColor,
+.sg-fontWeight {
+    display: inline-block; //align-items: center;
+    margin-right: $sg-spacer/2;
+    margin-left: $sg-spacer/2;
+    h1 &,
+    h2 &,
+    h3 &,
+    h4 &,
+    h5 &,
+    h6 & {
+        display: block;
+        font-size: 14px;
+        color: $sg-colorGray;
+        margin-top: $sg-spacer/2;
+        margin-bottom: $sg-spacer/2;
+        &:before {
+            content: '- \00a0';
+        }
+    }
+}
+
+.sg-styleSection {
+    padding-top: $sg-spacer*5;
+    padding-bottom: $sg-spacer*5;
+    border-bottom: 4px solid $sg-colorGrayLighter;
+    &:last-of-type {
+        border-bottom: 0;
+    }
+}
+
+.sg-styleSectionTitle {
+    //font-size: 24px;
+    margin-bottom: $sg-spacer*6;
+    @media (min-width: 992px) {
+        position: relative; //padding-left:$sg-spacer;
+        &:before {
+            content: '';
+            border-bottom: 5px solid $sg-colorGrayLighter;
+            width: 3000px;
+            height: 1px;
+            display: block;
+            position: absolute;
+            top: 17px;
+            right: 103%;
+        }
+        &:after {
+            content: '';
+            background: $sg-colorGrayLighter;
+            width: 20px;
+            height: 20px;
+            display: block;
+            position: absolute;
+            top: 9px;
+            right: 102%;
+            border-radius: 50%;
+        }
+    }
+}
+
+.sg-subHeading {
+    margin-bottom: $sg-spacer*4;
+}
+
+.sg-example {
+    @extend %noPhatBottom;
+    margin-bottom: $sg-spacer*3;
+    border: 2px solid $sg-colorGrayLighter;
+    padding: $sg-spacer;
+    .sg-code {
+        margin-top: $sg-spacer;
+        margin-right: -$sg-spacer;
+        margin-bottom: -$sg-spacer !important;
+        margin-left: -$sg-spacer;
+    }
+}
+
+.sg-exampleSummary {
+    font-size: 13px;
+    margin-top: $sg-spacer*3;
+    margin-bottom: $sg-spacer*3;
+    padding-left: $sg-spacer;
+    position: relative;
+    opacity: .7;
+    &:before {
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        border-left: 4px solid;
+        opacity: .25;
+    } //border-left: 4px solid darken($sg-colorGrayLighter, 2);
+    &:first-of-type {
+        margin-top: 0;
+    } //margin-top: -$sg-spacer*1.5;
+    //margin-left: -$sg-spacer*1.5;
+}
+
+pre.sg-code {
+    font-family: "Operator Mono SSm A", "Operator Mono SSm B", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
+    border-radius: 0;
+    border: 2px solid $sg-colorGrayLighter;
+    margin-bottom: $sg-spacer*3;
+    font-size: 13px;
+    position: relative;
+    display: block;
+    overflow: auto;
+    padding: 30px 10px 10px 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.75;
+    color: $sg-colorGrayDark;
+    background: $sg-colorGrayLighter; // background-image: -webkit-linear-gradient($sg-colorGrayLighter 50%, $sg-colorGrayLightest 50%);
+    // background-image: -moz-linear-gradient($sg-colorGrayLighter 50%, $sg-colorGrayLightest 50%);
+    // background-image: -ms-linear-gradient($sg-colorGrayLighter 50%, $sg-colorGrayLightest 50%);
+    // background-image: -o-linear-gradient($sg-colorGrayLighter 50%, $sg-colorGrayLightest 50%);
+    // background-image: linear-gradient($sg-colorGrayLighter 50%, $sg-colorGrayLightest 50%);
+    // background-repeat: repeat;
+    // background-position: 0 0;
+    // background-size: 4.0000em 4.0000em;
+    &:before {
+        font-size: 12px;
+        line-height: 16px;
+        position: absolute;
+        top: 4px;
+        left: 2px;
+        display: inline-block;
+        padding-right: $sg-spacer/2;
+        padding-left: $sg-spacer/2;
+        content: attr(rel);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background-color: $sg-colorWhite;
+    }
+}
+
+//style icons list from fontello
+.i-code {
+    display: none;
+}
+
+.demo-icon {
+    font-size: 0;
+    padding-top: $sg-spacer/4;
+    padding-right: $sg-spacer/2;
+    &:before {
+        font-size: 16px;
+        margin-right: 0;
+    }
+}
+
+.sg-iconItem {
+    padding: $sg-spacer/2;
+    display: flex;
+}
+
+.sg-styleguide-colorList {
+    font-size: 14px;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    li {
+        // border-bottom: 50px solid;
+        padding: $sg-spacer $sg-spacer/2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: currentColor;
+            order: 0;
+        }
+    }
+    @media (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            flex: 0 0 10%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            span {
+                flex: 0 0 100%;
+                margin: 0;
+            }
+            &:after {
+                width: 100%;
+                padding-bottom: 100%;
+                order: initial;
+                margin-top: $sg-spacer/2;
+            }
+            &[class*='500'] {
+                font-weight: bold;
+                span {
+                    color:$sg-colorGrayDark;
+                }
+                &:before {
+                    content: '';
+                    height: 0;
+                    width: 0;
+                    border-left: 9px solid transparent;
+                    border-right: 9px solid transparent;
+                    border-top: 10px solid $sg-colorGrayDark;
+                    margin-top:-10px;
+                }
+            }
+        }
+    }
+}
+
+.sg-blockList {
+    padding: 0;
+    position: relative;
+    ul, ol {
+        margin-bottom:$sg-spacer;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 0;
+        border-top: 1px solid;
+        opacity: .1;
+    }
+    li {
+        display: block;
+        position: relative;
+        padding: 9px 6px;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 0;
+            border-bottom: 1px solid;
+            opacity: .1;
+        }
+    }
+}
+
+.sg-hr {
+    margin-top: $sg-spacer*2;
+    margin-bottom: $sg-spacer*2;
+    border: 0;
+    border-top: 2px solid $sg-colorGrayLighter;
+}
+
+//make our own simple lil grid cause who knows what the site may be using for layout ya'know?
+.sg-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+[class*="sg-col-"] {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+    .sg-col-full {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .sg-col-half {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .sg-col-third {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+    .sg-col-fourth {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+//some utilities for us. try to use these instead of bootstrap or other helpers
+.sg-p-1 {
+    padding: $sg-spacer;
+}
+
+.sg-p-2 {
+    padding: $sg-spacer*2;
+}
+
+.sg-p-3 {
+    padding: $sg-spacer*3;
+}
+
+.sg-p-4 {
+    padding: $sg-spacer*4;
+}
+
+.sg-p-5 {
+    padding: $sg-spacer*5;
+}

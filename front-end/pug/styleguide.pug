@@ -1,0 +1,1923 @@
+- var $colors = ['Allports', 'Casablanca', 'Gray'];
+- var $colorShades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
+- var $clientSiteName = '[CLIENT NAME]';
+
+
+doctype html
+html(lang="en")
+	head
+		include includes/_head.pug
+		title #{$clientSiteName} Styleguide
+	body
+		.sg-pageWrap#top
+			.sg-header
+				.sg-navToggle
+					.sg-navIcon
+						.sg-navPatty
+						.sg-navPatty
+						.sg-navPatty
+						.sg-navPatty
+						.sg-navPatty
+						.sg-navPatty
+				span.sg-headerTitle #{$clientSiteName} Web Styleguide
+			ul.sg-mainNav
+				li.sg-mainNav-item
+					a.sg-mainNav-link(href='#intro') Intro
+				li.sg-mainNav-item
+					a.sg-mainNav-link(href='#typography') Typography
+				li.sg-mainNav-item
+					a.sg-mainNav-link(href='#palette') Palette
+				li.sg-mainNav-item
+					span.sg-mainNav-link Pattern Library
+					ul.sg-mainNav-subNav
+						li.sg-mainNav-subItem
+							a.sg-mainNav-subLink(href='#card') Card
+				li.sg-mainNav-item
+					span.sg-mainNav-link Coding &amp; Content
+					ul.sg-mainNav-subNav
+						li.sg-mainNav-subItem
+							a.sg-mainNav-subLink(href='#namingConvention') Naming Convention
+						li.sg-mainNav-subItem
+							a.sg-mainNav-subLink(href='#helpers') Helper Classes
+			main.sg
+				section#intro.sg-styleSection
+					h2.sg-styleSectionTitle Intro
+					p
+						| This style guide is intended as a reference for content managers and developers to properly implement the styles, structures and methodology employed in the construction of the #{$clientSiteName} website.
+					h3 Overview of styleguide content:
+					h4 Typography
+					p Font families, sizes and hex color values for headings and body text
+					hr.sg-hr
+					h4 Palette
+					p Colors available on the site with their hex values
+					hr.sg-hr
+					h4 Pattern Library
+					p
+						| Information about the various custom HTML components utilized on the site with example usage and code which can be copied/pasted
+					ul.sg-blockList
+						li
+							span.sg-iconInfo.sg-colorInfo
+								| Some items in the Pattern Library may require back end development to function properly
+					hr.sg-hr
+					h4 Coding &amp; Content
+					p
+						| This section of your styleguide contains important information in managing and expanding upon the HTML and CSS of your website.
+				section#typography.sg-styleSection
+					h2.sg-styleSectionTitle Typography
+					//- mixin to create the headings examples
+					.sg-example
+						each _, index in Array(6)
+							- var h_tags = ('H' + (index+1))
+							- var h_nums = (index+1)
+							summary.sg-exampleSummary #{h_tags}
+							#{h_tags} Heading #{h_nums}
+									span.sg-color
+									span.sg-size
+									span.sg-fontFam
+									span.sg-fontWeight
+						pre.sg-code(rel='HTML')
+							each _, index in Array(6)
+								- var n = (index+1)
+								- var h_tags = '<h'+n+'>...</h'+n+'>'
+								| #{h_tags}
+								br
+					.sg-example
+						summary.sg-exampleSummary Paragraph/Body Text
+						p
+							span.sg-color
+							span.sg-size
+							span.sg-fontFam
+							span.sg-fontWeight
+							| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+							a(href='javascript:void(0)') linked text
+							|  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						pre.sg-code(rel='HTML') &lt;p&gt;...&lt;/p&gt;
+
+				section#palette.sg-styleSection
+					h2.sg-styleSectionTitle Palette
+					h3.sg-subHeading Brand Colors
+					p This color palette contains automatically generated light - dark shades from #{$clientSiteName} base (500) brand colors for creative flexibility.
+					//- Automate the color lists
+					.sg-example
+						//- Call your base colors from the var at the top of the page
+						each $colorBase in $colors
+							//- Create classes that match the one's in style/scss/base/helpers.
+							//- Add "color" and clean any whitespace out, e.g. "colorBrandBlueBright"
+							- var $colorClass = 'h-color' + $colorBase.replace(/\s+/g, '');
+							//- put the color name in the summary as it appears in the list above
+							summary.sg-exampleSummary= $colorBase
+							ul.sg-styleguide-colorList
+								//- Call your shade modifiers from the var at the top of the page
+								each $colorShade in $colorShades
+									//- create the modifer classes using $colorClass from above + the modifier. e.g. "colorBrandBlueBrightLightest"
+									- var $colorClassModifier = $colorClass + $colorShade;
+									//- clean the word "Base" out of any classes. The word "Base" is used to "label" the base color below
+									//- but we don't want it to appear in our classes
+									//- right = "colorBrandBlueBright", wrong = "colorBrandBlueBrightBase"
+									- var $colorShadeCleaned = $colorClassModifier.replace(/Base/g, '');
+										//- Add the finished classes to each li
+									li(class=$colorShadeCleaned)
+										//- Display the pre-cleaned color name as we want "Base" to display here on the base color swatch
+										span(class='sg-colorGray')= $colorShade
+										span.sg-colorGray.sg-color
+				section#card.sg-styleSection
+					h2.sg-styleSectionTitle Card
+					p This would be a reusable, documented component
+					p Here's some helpful info about this UI pattern/code snippet
+					ul.sg-blockList
+						li
+							span.sg-iconInfo.sg-colorInfo
+								| A helpful info point
+						li
+							span.sg-iconAttention.sg-colorWarning
+								| An important message
+						li
+							span.sg-iconAttention.sg-colorDanger
+								| An important ...er message
+					.sg-example
+						summary.sg-exampleSummary
+							span Basic Usage
+						p example component here
+						pre.sg-code(rel='HTML') &lt;div class=&quot;card&quot;&gt;..&lt;/div&gt;
+				section#namingConvention.sg-styleSection
+					h2.styleSectionTitle Naming Convention
+					p
+						| This site uses a modified version of the 
+						a(href='http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/', target='_blank') BEM
+						|  naming syntax for custom elements. The modified version used is based largely on 
+						a(href='http://nicolasgallagher.com/about-html-semantics-front-end-architecture/', target='_blank') Nicolas Gallagher's extended BEM syntax
+						| . The intention is to make the classes more understandable for humans, scoped where necessary, and also easily selectable in editors.
+					ul.sg-blockList
+						li
+							span.sg-iconAttention.sg-colorDanger
+								| Note that class names composed of two or more words are written in 
+								a(href='http://msdn.microsoft.com/en-us/library/x2dbyw72%28v=vs.71%29.aspx', target='_blank') camelCase
+								|  as opposed to Gallagher's 
+								a(href='http://msdn.microsoft.com/en-us/library/x2dbyw72%28v=vs.71%29.aspx', target='_blank') PascalCase
+						li
+							span.sg-iconAttention.sg-colorDanger
+								| Note the major difference from BEM is the use of hyphens as opposed to underscores preceeding a descendant in a class name 
+						li
+							span.sg-iconAttention.sg-colorDanger
+								| This naming convention is to be used on 
+								strong custom elements only 
+								| not Bootstrap components 
+						li
+							span.sg-iconAttention.sg-colorDanger
+								| Each custom component should have it's own SCSS partial in style/scss/components 
+						li
+							span.sg-iconInfo.sg-colorInfo
+								| Very helpful article in dealing with some of the trickier aspects of this naming convention 
+								a(href='https://www.smashingmagazine.com/2016/06/battling-bem-extended-edition-common-problems-and-how-to-avoid-them/', target='_blank') Battling BEM (Extended Edition): 10 Common Problems And How To Avoid Them 
+								| by Smashing Magazine
+					pre.sg-code(rel='HTML')
+						| /* Component */
+						| .componentName {}
+						|
+						| /* Component modifier */
+						| .componentName--modifierName {}
+						|
+						| /* Component descendant */
+						| .componentName-descendant {}
+						|
+						| /* Component descendant modifier */
+						| .componentName-descendant--modifierName {}
+						|
+						| /* Component state (scoped to component) */
+						| .componentName.is-stateOfComponent {}
+					p Begin class names with the most abstract descriptor and then layer in specifics.
+					pre.sg-code(rel='SCSS')
+						| /* Basic nav style */
+						| .nav {}
+						|
+						| /* The main nav of the site */
+						| .navMain {}
+						|
+						| /* The secondary nav of the site */
+						| .navSecondary {}
+						|
+						| /* The footer nav */
+						| .navFooter {}
+					p
+						| Class names should be reusable and descriptive. We use the multi-class pattern where by laying class names onto an element we can achieve many different and reusable styles.
+					pre.sg-code(rel='SCSS')
+						| .btn { /* basic button styles */ }
+						| .btn--secondary { /* styles specific to secondary button */ }
+						|
+						| &lt;a href='...' class="btn"&gt;...&lt;/a&gt;
+						| &lt;a href='...' class="btn btn--secondary"&gt;...&lt;/a&gt;
+					p
+						| Use .is-stateName to reflect changes to a component's state. The state name must be camel case. 
+						strong
+							| Never style these classes directly; they should always be used as an adjoining class.
+					p
+						| This means that the same state names can be used in multiple contexts, but every component must define its own styles for the state (as they are scoped to the component).
+					pre.sg-code(rel='SCSS')
+						| .tweet { /* ... */ }
+						| .tweet.is-expanded { /* ... */ }
+						|
+						| &lt;article class="tweet is-expanded"&gt;...&lt;/article&gt;
+				section#helpers.sg-styleSection
+					h2.sg-styleSectionTitle Helper Classes
+					p Helper classes are trump classes that override existing CSS properties like text color, background color, etc.
+					ul.sg-blockList
+						li
+							span.sg-iconInfo.sg-colorDanger
+								| Helper classes should always be namespaced with "h-" (e.g. - .h-helperClass)
+						li
+							p.sg-iconInfo.sg-colorInfo In addition to the helper classes documented here, the following  Bootstrap 4 utility classes are also available.
+							ul
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/display/', target='_blank') Display]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/flex/', target='_blank') Flex]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/float/', target='_blank') Float]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/position/', target='_blank') Position]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/screenreaders/', target='_blank') Screenreaders]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/sizing/', target='_blank') Sizing]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/spacing/', target='_blank') Spacing]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/text/', target='_blank') Text]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/vertical-align/', target='_blank') Vertical Alignment]
+								li #[a(href='https://getbootstrap.com/docs/4.1/utilities/visibility/', target='_blank') Visibility]
+					h3.sg-subHeading Text Colors
+
+
+					//- Call your base colors from the var at the top of the page
+					each $colorBase in $colors
+						//- Create classes that match the one's in style/scss/base/helpers.
+						//- Add "color" and clean any whitespace out, e.g. "colorBrandBlueBright"
+						- var $colorClass = 'h-color' + $colorBase.replace(/\s+/g, '');
+						//- put the color name in the summary as it appears in the list above
+						//- Call your shade modifiers from the var at the top of the page
+						each $colorShade in $colorShades
+							//- create the modifer classes using $colorClass from above + the modifier. e.g. "colorBrandBlueBrightLightest"
+							- var $colorClassModifier = $colorClass + $colorShade;
+							//- clean the word "Base" out of any classes. The word "Base" is used to "label" the base color below
+							//- but we don't want it to appear in our classes
+							//- right = "colorBrandBlueBright", wrong = "colorBrandBlueBrightBase"
+							- var $colorShadeCleaned = $colorClassModifier.replace(/Base/g, '');
+								//- Add the finished classes to .sg-example element
+							.sg-example
+								summary.sg-exampleSummary= '.' + $colorShadeCleaned
+								//- Display the pre-cleaned color name as we want "Base" to display here on the base color swatch
+								p(class=$colorShadeCleaned) Colors text
+									span.sg-color
+								pre.sg-code(rel='HTML') &lt;div class=&quot;#{$colorShadeCleaned}&quot;&gt;..&lt;/div&gt;
+					h3.sg-subHeading Background Colors
+					//- Call your base colors from the var at the top of the page
+					each $colorBase in $colors
+						//- Create classes that match the one's in style/scss/base/helpers.
+						//- Add "color" and clean any whitespace out, e.g. "colorBrandBlueBright"
+						- var $colorClass = 'h-fill' + $colorBase.replace(/\s+/g, '');
+						//- put the color name in the summary as it appears in the list above
+						//- Call your shade modifiers from the var at the top of the page
+						each $colorShade in $colorShades
+							//- create the modifer classes using $colorClass from above + the modifier. e.g. "colorBrandBlueBrightLightest"
+							- var $colorClassModifier = $colorClass + $colorShade;
+							//- clean the word "Base" out of any classes. The word "Base" is used to "label" the base color below
+							//- but we don't want it to appear in our classes
+							//- right = "colorBrandBlueBright", wrong = "colorBrandBlueBrightBase"
+							- var $colorShadeCleaned = $colorClassModifier.replace(/Base/g, '');
+								//- Add the finished classes to .sg-example element
+							.sg-example(class=$colorShadeCleaned)
+								summary.sg-exampleSummary= '.' + $colorShadeCleaned
+								|Applies background color
+								span.sg-bgColor
+								pre.sg-code(rel='HTML') &lt;div class=&quot;#{$colorShadeCleaned}&quot;&gt;..&lt;/div&gt;
+
+
+
+				//- section#icons.sg-styleSection
+				//- 	h2.sg-styleSectionTitle Icons
+				//- 	p
+				//- 		| A custom, font-based icon library has been created for your site using 
+				//- 		a(href='http://fontello.com', target='_blank') fontello.com
+				//- 		| . Icons can be applied directly to text elements like headings, paragraphs and links or they can also be applied inline pretty much wherever you would like.
+				//- 	h3.iconFontello-cogs Developer Notes
+				//- 	p
+				//- 		| You can add icons, edit existing ones or create custom ones at 
+				//- 		a(href='http://fontello.com', target='_blank') fontello.com
+				//- 		| . Instructions for using the font library can be found 
+				//- 		a(href='https://github.com/fontello/fontello/wiki/Help', target='_blank') here
+				//- 		| .
+				//- 	h3 Icons can be applied two different ways:
+				//- 	.sg-example
+				//- 		summary.sg-exampleSummary Directly to text element (:before)
+				//- 		a.iconFontello-check(href='javascript:void(0)') Text Link
+				//- 	pre.sg-code(rel='HTML') &lt;a href="..." class="iconFontello-check"&gt;Text Link&lt;a&gt;
+				//- 	.sg-example
+				//- 		summary.sg-exampleSummary &lt;i&gt; tag within text element
+				//- 		a(href='javascript:void(0)')
+				//- 			| Text Link 
+				//- 			i.iconFontello-check
+				//- 	pre.sg-code(rel='HTML') &lt;a href="..."&gt;Text Link &lt;i class="iconFontello-check"&gt;&lt;/i&gt;&lt;/a&gt;
+				//- 	p
+				//- 		| Using the &lt;i&gt; method, icons can be styled apart from their containing text element.
+				//- 	.sg-example
+				//- 		p
+				//- 			i.iconFontello-check.text-success
+				//- 			|  Completed
+				//- 			h3 Available icons/classes
+				//- 	#icons.container
+				//- 		.row
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe800')
+				//- 				i.demo-icon.iconFontello-arrow-left-down 
+				//- 				span.i-name iconFontello-arrow-left-down
+				//- 				span.i-code 0xe800
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe801')
+				//- 				i.demo-icon.iconFontello-arrow-up 
+				//- 				span.i-name iconFontello-arrow-up
+				//- 				span.i-code 0xe801
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe802')
+				//- 				i.demo-icon.iconFontello-clipboard 
+				//- 				span.i-name iconFontello-clipboard
+				//- 				span.i-code 0xe802
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe803')
+				//- 				i.demo-icon.iconFontello-arrow-down 
+				//- 				span.i-name iconFontello-arrow-down
+				//- 				span.i-code 0xe803
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe804')
+				//- 				i.demo-icon.iconFontello-arrow-left 
+				//- 				span.i-name iconFontello-arrow-left
+				//- 				span.i-code 0xe804
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe805')
+				//- 				i.demo-icon.iconFontello-arrow-right 
+				//- 				span.i-name iconFontello-arrow-right
+				//- 				span.i-code 0xe805
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe806')
+				//- 				i.demo-icon.iconFontello-arrow-left-up 
+				//- 				span.i-name iconFontello-arrow-left-up
+				//- 				span.i-code 0xe806
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe807')
+				//- 				i.demo-icon.iconFontello-arrow-right-up 
+				//- 				span.i-name iconFontello-arrow-right-up
+				//- 				span.i-code 0xe807
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe808')
+				//- 				i.demo-icon.iconFontello-arrow-right-down 
+				//- 				span.i-name iconFontello-arrow-right-down
+				//- 				span.i-code 0xe808
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe809')
+				//- 				i.demo-icon.iconFontello-arrow-up-down 
+				//- 				span.i-name iconFontello-arrow-up-down
+				//- 				span.i-code 0xe809
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe80a')
+				//- 				i.demo-icon.iconFontello-arrow-up-down-alt 
+				//- 				span.i-name iconFontello-arrow-up-down-alt
+				//- 				span.i-code 0xe80a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe80b')
+				//- 				i.demo-icon.iconFontello-arrow-left-right-alt 
+				//- 				span.i-name iconFontello-arrow-left-right-alt
+				//- 				span.i-code 0xe80b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe80c')
+				//- 				i.demo-icon.iconFontello-arrow-left-right 
+				//- 				span.i-name iconFontello-arrow-left-right
+				//- 				span.i-code 0xe80c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe80d')
+				//- 				i.demo-icon.iconFontello-arrow-expand-alt2 
+				//- 				span.i-name iconFontello-arrow-expand-alt2
+				//- 				span.i-code 0xe80d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe80e')
+				//- 				i.demo-icon.iconFontello-arrow-expand-alt 
+				//- 				span.i-name iconFontello-arrow-expand-alt
+				//- 				span.i-code 0xe80e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe80f')
+				//- 				i.demo-icon.iconFontello-arrow-condense 
+				//- 				span.i-name iconFontello-arrow-condense
+				//- 				span.i-code 0xe80f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe810')
+				//- 				i.demo-icon.iconFontello-arrow-expand 
+				//- 				span.i-name iconFontello-arrow-expand
+				//- 				span.i-code 0xe810
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe811')
+				//- 				i.demo-icon.iconFontello-arrow-move 
+				//- 				span.i-name iconFontello-arrow-move
+				//- 				span.i-code 0xe811
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe812')
+				//- 				i.demo-icon.iconFontello-caret-up 
+				//- 				span.i-name iconFontello-caret-up
+				//- 				span.i-code 0xe812
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe813')
+				//- 				i.demo-icon.iconFontello-caret-down 
+				//- 				span.i-name iconFontello-caret-down
+				//- 				span.i-code 0xe813
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe814')
+				//- 				i.demo-icon.iconFontello-caret-left 
+				//- 				span.i-name iconFontello-caret-left
+				//- 				span.i-code 0xe814
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe815')
+				//- 				i.demo-icon.iconFontello-caret-right 
+				//- 				span.i-name iconFontello-caret-right
+				//- 				span.i-code 0xe815
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe816')
+				//- 				i.demo-icon.iconFontello-caret-2up 
+				//- 				span.i-name iconFontello-caret-2up
+				//- 				span.i-code 0xe816
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe817')
+				//- 				i.demo-icon.iconFontello-caret-2down 
+				//- 				span.i-name iconFontello-caret-2down
+				//- 				span.i-code 0xe817
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe818')
+				//- 				i.demo-icon.iconFontello-caret-2left 
+				//- 				span.i-name iconFontello-caret-2left
+				//- 				span.i-code 0xe818
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe819')
+				//- 				i.demo-icon.iconFontello-caret-2right 
+				//- 				span.i-name iconFontello-caret-2right
+				//- 				span.i-code 0xe819
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe81a')
+				//- 				i.demo-icon.iconFontello-caret-up-alt2 
+				//- 				span.i-name iconFontello-caret-up-alt2
+				//- 				span.i-code 0xe81a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe81b')
+				//- 				i.demo-icon.iconFontello-caret-down-alt2 
+				//- 				span.i-name iconFontello-caret-down-alt2
+				//- 				span.i-code 0xe81b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe81c')
+				//- 				i.demo-icon.iconFontello-caret-left-alt2 
+				//- 				span.i-name iconFontello-caret-left-alt2
+				//- 				span.i-code 0xe81c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe81d')
+				//- 				i.demo-icon.iconFontello-caret-right-alt2 
+				//- 				span.i-name iconFontello-caret-right-alt2
+				//- 				span.i-code 0xe81d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe81e')
+				//- 				i.demo-icon.iconFontello-caret-2up-alt2 
+				//- 				span.i-name iconFontello-caret-2up-alt2
+				//- 				span.i-code 0xe81e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe81f')
+				//- 				i.demo-icon.iconFontello-caret-2down-alt2 
+				//- 				span.i-name iconFontello-caret-2down-alt2
+				//- 				span.i-code 0xe81f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe820')
+				//- 				i.demo-icon.iconFontello-caret-2left-alt2 
+				//- 				span.i-name iconFontello-caret-2left-alt2
+				//- 				span.i-code 0xe820
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe821')
+				//- 				i.demo-icon.iconFontello-caret-2right-alt2 
+				//- 				span.i-name iconFontello-caret-2right-alt2
+				//- 				span.i-code 0xe821
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe822')
+				//- 				i.demo-icon.iconFontello-triangle-up 
+				//- 				span.i-name iconFontello-triangle-up
+				//- 				span.i-code 0xe822
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe823')
+				//- 				i.demo-icon.iconFontello-triangle-down 
+				//- 				span.i-name iconFontello-triangle-down
+				//- 				span.i-code 0xe823
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe824')
+				//- 				i.demo-icon.iconFontello-triangle-left 
+				//- 				span.i-name iconFontello-triangle-left
+				//- 				span.i-code 0xe824
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe825')
+				//- 				i.demo-icon.iconFontello-triangle-right 
+				//- 				span.i-name iconFontello-triangle-right
+				//- 				span.i-code 0xe825
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe826')
+				//- 				i.demo-icon.iconFontello-triangle-up-alt2 
+				//- 				span.i-name iconFontello-triangle-up-alt2
+				//- 				span.i-code 0xe826
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe827')
+				//- 				i.demo-icon.iconFontello-triangle-down-alt2 
+				//- 				span.i-name iconFontello-triangle-down-alt2
+				//- 				span.i-code 0xe827
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe828')
+				//- 				i.demo-icon.iconFontello-triangle-left-alt2 
+				//- 				span.i-name iconFontello-triangle-left-alt2
+				//- 				span.i-code 0xe828
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe829')
+				//- 				i.demo-icon.iconFontello-triangle-right-alt2 
+				//- 				span.i-name iconFontello-triangle-right-alt2
+				//- 				span.i-code 0xe829
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe82a')
+				//- 				i.demo-icon.iconFontello-arrow-back 
+				//- 				span.i-name iconFontello-arrow-back
+				//- 				span.i-code 0xe82a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe82b')
+				//- 				i.demo-icon.iconFontello-minus 
+				//- 				span.i-name iconFontello-minus
+				//- 				span.i-code 0xe82b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe82c')
+				//- 				i.demo-icon.iconFontello-plus 
+				//- 				span.i-name iconFontello-plus
+				//- 				span.i-code 0xe82c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe82d')
+				//- 				i.demo-icon.iconFontello-close 
+				//- 				span.i-name iconFontello-close
+				//- 				span.i-code 0xe82d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe82e')
+				//- 				i.demo-icon.iconFontello-check 
+				//- 				span.i-name iconFontello-check
+				//- 				span.i-code 0xe82e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe82f')
+				//- 				i.demo-icon.iconFontello-minus-alt2 
+				//- 				span.i-name iconFontello-minus-alt2
+				//- 				span.i-code 0xe82f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe830')
+				//- 				i.demo-icon.iconFontello-plus-alt2 
+				//- 				span.i-name iconFontello-plus-alt2
+				//- 				span.i-code 0xe830
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe831')
+				//- 				i.demo-icon.iconFontello-close-alt2 
+				//- 				span.i-name iconFontello-close-alt2
+				//- 				span.i-code 0xe831
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe832')
+				//- 				i.demo-icon.iconFontello-check-alt2 
+				//- 				span.i-name iconFontello-check-alt2
+				//- 				span.i-code 0xe832
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe833')
+				//- 				i.demo-icon.iconFontello-zoom-out-alt 
+				//- 				span.i-name iconFontello-zoom-out-alt
+				//- 				span.i-code 0xe833
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe834')
+				//- 				i.demo-icon.iconFontello-zoom-in-alt 
+				//- 				span.i-name iconFontello-zoom-in-alt
+				//- 				span.i-code 0xe834
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe835')
+				//- 				i.demo-icon.iconFontello-search 
+				//- 				span.i-name iconFontello-search
+				//- 				span.i-code 0xe835
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe836')
+				//- 				i.demo-icon.iconFontello-box-empty 
+				//- 				span.i-name iconFontello-box-empty
+				//- 				span.i-code 0xe836
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe837')
+				//- 				i.demo-icon.iconFontello-box-selected 
+				//- 				span.i-name iconFontello-box-selected
+				//- 				span.i-code 0xe837
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe838')
+				//- 				i.demo-icon.iconFontello-minus-box 
+				//- 				span.i-name iconFontello-minus-box
+				//- 				span.i-code 0xe838
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe839')
+				//- 				i.demo-icon.iconFontello-plus-box 
+				//- 				span.i-name iconFontello-plus-box
+				//- 				span.i-code 0xe839
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe83a')
+				//- 				i.demo-icon.iconFontello-box-checked 
+				//- 				span.i-name iconFontello-box-checked
+				//- 				span.i-code 0xe83a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe83b')
+				//- 				i.demo-icon.iconFontello-circle-empty 
+				//- 				span.i-name iconFontello-circle-empty
+				//- 				span.i-code 0xe83b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe83c')
+				//- 				i.demo-icon.iconFontello-circle-selected 
+				//- 				span.i-name iconFontello-circle-selected
+				//- 				span.i-code 0xe83c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe83d')
+				//- 				i.demo-icon.iconFontello-stop-alt2 
+				//- 				span.i-name iconFontello-stop-alt2
+				//- 				span.i-code 0xe83d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe83e')
+				//- 				i.demo-icon.iconFontello-stop 
+				//- 				span.i-name iconFontello-stop
+				//- 				span.i-code 0xe83e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe83f')
+				//- 				i.demo-icon.iconFontello-pause-alt2 
+				//- 				span.i-name iconFontello-pause-alt2
+				//- 				span.i-code 0xe83f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe840')
+				//- 				i.demo-icon.iconFontello-pause 
+				//- 				span.i-name iconFontello-pause
+				//- 				span.i-code 0xe840
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe841')
+				//- 				i.demo-icon.iconFontello-menu 
+				//- 				span.i-name iconFontello-menu
+				//- 				span.i-code 0xe841
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe842')
+				//- 				i.demo-icon.iconFontello-menu-square-alt2 
+				//- 				span.i-name iconFontello-menu-square-alt2
+				//- 				span.i-code 0xe842
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe843')
+				//- 				i.demo-icon.iconFontello-menu-circle-alt2 
+				//- 				span.i-name iconFontello-menu-circle-alt2
+				//- 				span.i-code 0xe843
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe844')
+				//- 				i.demo-icon.iconFontello-ul 
+				//- 				span.i-name iconFontello-ul
+				//- 				span.i-code 0xe844
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe845')
+				//- 				i.demo-icon.iconFontello-ol 
+				//- 				span.i-name iconFontello-ol
+				//- 				span.i-code 0xe845
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe846')
+				//- 				i.demo-icon.iconFontello-adjust-horiz 
+				//- 				span.i-name iconFontello-adjust-horiz
+				//- 				span.i-code 0xe846
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe847')
+				//- 				i.demo-icon.iconFontello-adjust-vert 
+				//- 				span.i-name iconFontello-adjust-vert
+				//- 				span.i-code 0xe847
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe848')
+				//- 				i.demo-icon.iconFontello-doc-alt 
+				//- 				span.i-name iconFontello-doc-alt
+				//- 				span.i-code 0xe848
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe849')
+				//- 				i.demo-icon.iconFontello-docs-alt 
+				//- 				span.i-name iconFontello-docs-alt
+				//- 				span.i-code 0xe849
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe84a')
+				//- 				i.demo-icon.iconFontello-pencil 
+				//- 				span.i-name iconFontello-pencil
+				//- 				span.i-code 0xe84a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe84b')
+				//- 				i.demo-icon.iconFontello-pencil-edit-alt 
+				//- 				span.i-name iconFontello-pencil-edit-alt
+				//- 				span.i-code 0xe84b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe84c')
+				//- 				i.demo-icon.iconFontello-pencil-edit 
+				//- 				span.i-name iconFontello-pencil-edit
+				//- 				span.i-code 0xe84c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe84d')
+				//- 				i.demo-icon.iconFontello-folder-alt 
+				//- 				span.i-name iconFontello-folder-alt
+				//- 				span.i-code 0xe84d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe84e')
+				//- 				i.demo-icon.iconFontello-folder-open-alt 
+				//- 				span.i-name iconFontello-folder-open-alt
+				//- 				span.i-code 0xe84e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe84f')
+				//- 				i.demo-icon.iconFontello-folder-add-alt 
+				//- 				span.i-name iconFontello-folder-add-alt
+				//- 				span.i-code 0xe84f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe850')
+				//- 				i.demo-icon.iconFontello-info-alt 
+				//- 				span.i-name iconFontello-info-alt
+				//- 				span.i-code 0xe850
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe851')
+				//- 				i.demo-icon.iconFontello-attention-oct-alt 
+				//- 				span.i-name iconFontello-attention-oct-alt
+				//- 				span.i-code 0xe851
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe852')
+				//- 				i.demo-icon.iconFontello-attention-circle-alt 
+				//- 				span.i-name iconFontello-attention-circle-alt
+				//- 				span.i-code 0xe852
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe853')
+				//- 				i.demo-icon.iconFontello-attention-alt 
+				//- 				span.i-name iconFontello-attention-alt
+				//- 				span.i-code 0xe853
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe854')
+				//- 				i.demo-icon.iconFontello-question-alt2 
+				//- 				span.i-name iconFontello-question-alt2
+				//- 				span.i-code 0xe854
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe855')
+				//- 				i.demo-icon.iconFontello-question 
+				//- 				span.i-name iconFontello-question
+				//- 				span.i-code 0xe855
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe856')
+				//- 				i.demo-icon.iconFontello-comment-alt 
+				//- 				span.i-name iconFontello-comment-alt
+				//- 				span.i-code 0xe856
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe857')
+				//- 				i.demo-icon.iconFontello-chat-alt 
+				//- 				span.i-name iconFontello-chat-alt
+				//- 				span.i-code 0xe857
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe858')
+				//- 				i.demo-icon.iconFontello-vol-mute-alt 
+				//- 				span.i-name iconFontello-vol-mute-alt
+				//- 				span.i-code 0xe858
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe859')
+				//- 				i.demo-icon.iconFontello-vol-low-alt 
+				//- 				span.i-name iconFontello-vol-low-alt
+				//- 				span.i-code 0xe859
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe85a')
+				//- 				i.demo-icon.iconFontello-vol-higalt 
+				//- 				span.i-name iconFontello-vol-higalt
+				//- 				span.i-code 0xe85a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe85b')
+				//- 				i.demo-icon.iconFontello-quotes 
+				//- 				span.i-name iconFontello-quotes
+				//- 				span.i-code 0xe85b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe85c')
+				//- 				i.demo-icon.iconFontello-quotes-alt2 
+				//- 				span.i-name iconFontello-quotes-alt2
+				//- 				span.i-code 0xe85c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe85d')
+				//- 				i.demo-icon.iconFontello-clock-alt 
+				//- 				span.i-name iconFontello-clock-alt
+				//- 				span.i-code 0xe85d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe85e')
+				//- 				i.demo-icon.iconFontello-lock-alt 
+				//- 				span.i-name iconFontello-lock-alt
+				//- 				span.i-code 0xe85e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe85f')
+				//- 				i.demo-icon.iconFontello-lock-open-alt 
+				//- 				span.i-name iconFontello-lock-open-alt
+				//- 				span.i-code 0xe85f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe860')
+				//- 				i.demo-icon.iconFontello-key-alt 
+				//- 				span.i-name iconFontello-key-alt
+				//- 				span.i-code 0xe860
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe861')
+				//- 				i.demo-icon.iconFontello-cloud-alt 
+				//- 				span.i-name iconFontello-cloud-alt
+				//- 				span.i-code 0xe861
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe862')
+				//- 				i.demo-icon.iconFontello-cloud-upload-alt 
+				//- 				span.i-name iconFontello-cloud-upload-alt
+				//- 				span.i-code 0xe862
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe863')
+				//- 				i.demo-icon.iconFontello-cloud-download-alt 
+				//- 				span.i-name iconFontello-cloud-download-alt
+				//- 				span.i-code 0xe863
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe864')
+				//- 				i.demo-icon.iconFontello-image 
+				//- 				span.i-name iconFontello-image
+				//- 				span.i-code 0xe864
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe865')
+				//- 				i.demo-icon.iconFontello-images 
+				//- 				span.i-name iconFontello-images
+				//- 				span.i-code 0xe865
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe866')
+				//- 				i.demo-icon.iconFontello-bulb-alt 
+				//- 				span.i-name iconFontello-bulb-alt
+				//- 				span.i-code 0xe866
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe867')
+				//- 				i.demo-icon.iconFontello-gift-alt 
+				//- 				span.i-name iconFontello-gift-alt
+				//- 				span.i-code 0xe867
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe868')
+				//- 				i.demo-icon.iconFontello-home-alt 
+				//- 				span.i-name iconFontello-home-alt
+				//- 				span.i-code 0xe868
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe869')
+				//- 				i.demo-icon.iconFontello-genius 
+				//- 				span.i-name iconFontello-genius
+				//- 				span.i-code 0xe869
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe86a')
+				//- 				i.demo-icon.iconFontello-mobile 
+				//- 				span.i-name iconFontello-mobile
+				//- 				span.i-code 0xe86a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe86b')
+				//- 				i.demo-icon.iconFontello-tablet 
+				//- 				span.i-name iconFontello-tablet
+				//- 				span.i-code 0xe86b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe86c')
+				//- 				i.demo-icon.iconFontello-laptop 
+				//- 				span.i-name iconFontello-laptop
+				//- 				span.i-code 0xe86c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe86d')
+				//- 				i.demo-icon.iconFontello-desktop 
+				//- 				span.i-name iconFontello-desktop
+				//- 				span.i-code 0xe86d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe86e')
+				//- 				i.demo-icon.iconFontello-camera-alt 
+				//- 				span.i-name iconFontello-camera-alt
+				//- 				span.i-code 0xe86e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe86f')
+				//- 				i.demo-icon.iconFontello-cone-alt 
+				//- 				span.i-name iconFontello-cone-alt
+				//- 				span.i-code 0xe86f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe870')
+				//- 				i.demo-icon.iconFontello-ribbon-alt 
+				//- 				span.i-name iconFontello-ribbon-alt
+				//- 				span.i-code 0xe870
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe871')
+				//- 				i.demo-icon.iconFontello-bag-alt 
+				//- 				span.i-name iconFontello-bag-alt
+				//- 				span.i-code 0xe871
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe872')
+				//- 				i.demo-icon.iconFontello-creditcard 
+				//- 				span.i-name iconFontello-creditcard
+				//- 				span.i-code 0xe872
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe873')
+				//- 				i.demo-icon.iconFontello-cart-alt 
+				//- 				span.i-name iconFontello-cart-alt
+				//- 				span.i-code 0xe873
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe874')
+				//- 				i.demo-icon.iconFontello-paperclip 
+				//- 				span.i-name iconFontello-paperclip
+				//- 				span.i-code 0xe874
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe875')
+				//- 				i.demo-icon.iconFontello-tag-alt 
+				//- 				span.i-name iconFontello-tag-alt
+				//- 				span.i-code 0xe875
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe876')
+				//- 				i.demo-icon.iconFontello-tags-alt 
+				//- 				span.i-name iconFontello-tags-alt
+				//- 				span.i-code 0xe876
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe877')
+				//- 				i.demo-icon.iconFontello-trasalt 
+				//- 				span.i-name iconFontello-trasalt
+				//- 				span.i-code 0xe877
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe878')
+				//- 				i.demo-icon.iconFontello-cursor-alt 
+				//- 				span.i-name iconFontello-cursor-alt
+				//- 				span.i-code 0xe878
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe879')
+				//- 				i.demo-icon.iconFontello-mic-alt 
+				//- 				span.i-name iconFontello-mic-alt
+				//- 				span.i-code 0xe879
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe87a')
+				//- 				i.demo-icon.iconFontello-compass-alt 
+				//- 				span.i-name iconFontello-compass-alt
+				//- 				span.i-code 0xe87a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe87b')
+				//- 				i.demo-icon.iconFontello-location-alt 
+				//- 				span.i-name iconFontello-location-alt
+				//- 				span.i-code 0xe87b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe87c')
+				//- 				i.demo-icon.iconFontello-pushpin-alt 
+				//- 				span.i-name iconFontello-pushpin-alt
+				//- 				span.i-code 0xe87c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe87d')
+				//- 				i.demo-icon.iconFontello-map-alt 
+				//- 				span.i-name iconFontello-map-alt
+				//- 				span.i-code 0xe87d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe87e')
+				//- 				i.demo-icon.iconFontello-drawer-alt 
+				//- 				span.i-name iconFontello-drawer-alt
+				//- 				span.i-code 0xe87e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe87f')
+				//- 				i.demo-icon.iconFontello-toolbox-alt 
+				//- 				span.i-name iconFontello-toolbox-alt
+				//- 				span.i-code 0xe87f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe880')
+				//- 				i.demo-icon.iconFontello-book-alt 
+				//- 				span.i-name iconFontello-book-alt
+				//- 				span.i-code 0xe880
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe881')
+				//- 				i.demo-icon.iconFontello-calendar 
+				//- 				span.i-name iconFontello-calendar
+				//- 				span.i-code 0xe881
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe882')
+				//- 				i.demo-icon.iconFontello-film 
+				//- 				span.i-name iconFontello-film
+				//- 				span.i-code 0xe882
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe883')
+				//- 				i.demo-icon.iconFontello-table 
+				//- 				span.i-name iconFontello-table
+				//- 				span.i-code 0xe883
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe884')
+				//- 				i.demo-icon.iconFontello-contacts-alt 
+				//- 				span.i-name iconFontello-contacts-alt
+				//- 				span.i-code 0xe884
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe885')
+				//- 				i.demo-icon.iconFontello-headphones 
+				//- 				span.i-name iconFontello-headphones
+				//- 				span.i-code 0xe885
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe886')
+				//- 				i.demo-icon.iconFontello-lifesaver 
+				//- 				span.i-name iconFontello-lifesaver
+				//- 				span.i-code 0xe886
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe887')
+				//- 				i.demo-icon.iconFontello-piechart 
+				//- 				span.i-name iconFontello-piechart
+				//- 				span.i-code 0xe887
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe888')
+				//- 				i.demo-icon.iconFontello-refresh 
+				//- 				span.i-name iconFontello-refresh
+				//- 				span.i-code 0xe888
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe889')
+				//- 				i.demo-icon.iconFontello-link-alt 
+				//- 				span.i-name iconFontello-link-alt
+				//- 				span.i-code 0xe889
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe88a')
+				//- 				i.demo-icon.iconFontello-link 
+				//- 				span.i-name iconFontello-link
+				//- 				span.i-code 0xe88a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe88b')
+				//- 				i.demo-icon.iconFontello-loading 
+				//- 				span.i-name iconFontello-loading
+				//- 				span.i-code 0xe88b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe88c')
+				//- 				i.demo-icon.iconFontello-blocked 
+				//- 				span.i-name iconFontello-blocked
+				//- 				span.i-code 0xe88c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe88d')
+				//- 				i.demo-icon.iconFontello-archive-alt 
+				//- 				span.i-name iconFontello-archive-alt
+				//- 				span.i-code 0xe88d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe88e')
+				//- 				i.demo-icon.iconFontello-heart-alt 
+				//- 				span.i-name iconFontello-heart-alt
+				//- 				span.i-code 0xe88e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe88f')
+				//- 				i.demo-icon.iconFontello-star-alt 
+				//- 				span.i-name iconFontello-star-alt
+				//- 				span.i-code 0xe88f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe890')
+				//- 				i.demo-icon.iconFontello-star-half-alt 
+				//- 				span.i-name iconFontello-star-half-alt
+				//- 				span.i-code 0xe890
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe891')
+				//- 				i.demo-icon.iconFontello-star 
+				//- 				span.i-name iconFontello-star
+				//- 				span.i-code 0xe891
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe892')
+				//- 				i.demo-icon.iconFontello-star-half 
+				//- 				span.i-name iconFontello-star-half
+				//- 				span.i-code 0xe892
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe893')
+				//- 				i.demo-icon.iconFontello-tools 
+				//- 				span.i-name iconFontello-tools
+				//- 				span.i-code 0xe893
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe894')
+				//- 				i.demo-icon.iconFontello-tool 
+				//- 				span.i-name iconFontello-tool
+				//- 				span.i-code 0xe894
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe895')
+				//- 				i.demo-icon.iconFontello-cog 
+				//- 				span.i-name iconFontello-cog
+				//- 				span.i-code 0xe895
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe896')
+				//- 				i.demo-icon.iconFontello-cogs 
+				//- 				span.i-name iconFontello-cogs
+				//- 				span.i-code 0xe896
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe897')
+				//- 				i.demo-icon.iconFontello-arrow-up-alt 
+				//- 				span.i-name iconFontello-arrow-up-alt
+				//- 				span.i-code 0xe897
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe898')
+				//- 				i.demo-icon.iconFontello-arrow-down-alt 
+				//- 				span.i-name iconFontello-arrow-down-alt
+				//- 				span.i-code 0xe898
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe899')
+				//- 				i.demo-icon.iconFontello-arrow-left-alt 
+				//- 				span.i-name iconFontello-arrow-left-alt
+				//- 				span.i-code 0xe899
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe89a')
+				//- 				i.demo-icon.iconFontello-arrow-right-alt 
+				//- 				span.i-name iconFontello-arrow-right-alt
+				//- 				span.i-code 0xe89a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe89b')
+				//- 				i.demo-icon.iconFontello-arrow-left-up-alt 
+				//- 				span.i-name iconFontello-arrow-left-up-alt
+				//- 				span.i-code 0xe89b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe89c')
+				//- 				i.demo-icon.iconFontello-arrow-right-up-alt 
+				//- 				span.i-name iconFontello-arrow-right-up-alt
+				//- 				span.i-code 0xe89c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe89d')
+				//- 				i.demo-icon.iconFontello-arrow-right-down-alt 
+				//- 				span.i-name iconFontello-arrow-right-down-alt
+				//- 				span.i-code 0xe89d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe89e')
+				//- 				i.demo-icon.iconFontello-arrow-left-down-alt 
+				//- 				span.i-name iconFontello-arrow-left-down-alt
+				//- 				span.i-code 0xe89e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe89f')
+				//- 				i.demo-icon.iconFontello-arrow-condense-alt 
+				//- 				span.i-name iconFontello-arrow-condense-alt
+				//- 				span.i-code 0xe89f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a0')
+				//- 				i.demo-icon.iconFontello-arrow-expand-alt3 
+				//- 				span.i-name iconFontello-arrow-expand-alt3
+				//- 				span.i-code 0xe8a0
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a1')
+				//- 				i.demo-icon.iconFontello-arrow-caret-up-alt 
+				//- 				span.i-name iconFontello-arrow-caret-up-alt
+				//- 				span.i-code 0xe8a1
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a2')
+				//- 				i.demo-icon.iconFontello-arrow-caret-down-alt 
+				//- 				span.i-name iconFontello-arrow-caret-down-alt
+				//- 				span.i-code 0xe8a2
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a3')
+				//- 				i.demo-icon.iconFontello-arrow-caret-left-alt 
+				//- 				span.i-name iconFontello-arrow-caret-left-alt
+				//- 				span.i-code 0xe8a3
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a4')
+				//- 				i.demo-icon.iconFontello-arrow-caret-right-alt 
+				//- 				span.i-name iconFontello-arrow-caret-right-alt
+				//- 				span.i-code 0xe8a4
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a5')
+				//- 				i.demo-icon.iconFontello-arrow-caret-2up-alt 
+				//- 				span.i-name iconFontello-arrow-caret-2up-alt
+				//- 				span.i-code 0xe8a5
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a6')
+				//- 				i.demo-icon.iconFontello-arrow-caret-2down-alt 
+				//- 				span.i-name iconFontello-arrow-caret-2down-alt
+				//- 				span.i-code 0xe8a6
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a7')
+				//- 				i.demo-icon.iconFontello-arrow-caret-2left-alt 
+				//- 				span.i-name iconFontello-arrow-caret-2left-alt
+				//- 				span.i-code 0xe8a7
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a8')
+				//- 				i.demo-icon.iconFontello-arrow-caret-2right-alt 
+				//- 				span.i-name iconFontello-arrow-caret-2right-alt
+				//- 				span.i-code 0xe8a8
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8a9')
+				//- 				i.demo-icon.iconFontello-triangle-up-alt 
+				//- 				span.i-name iconFontello-triangle-up-alt
+				//- 				span.i-code 0xe8a9
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8aa')
+				//- 				i.demo-icon.iconFontello-triangle-down-alt 
+				//- 				span.i-name iconFontello-triangle-down-alt
+				//- 				span.i-code 0xe8aa
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ab')
+				//- 				i.demo-icon.iconFontello-triangle-left-alt 
+				//- 				span.i-name iconFontello-triangle-left-alt
+				//- 				span.i-code 0xe8ab
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ac')
+				//- 				i.demo-icon.iconFontello-triangle-right-alt 
+				//- 				span.i-name iconFontello-triangle-right-alt
+				//- 				span.i-code 0xe8ac
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ad')
+				//- 				i.demo-icon.iconFontello-minus-alt 
+				//- 				span.i-name iconFontello-minus-alt
+				//- 				span.i-code 0xe8ad
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ae')
+				//- 				i.demo-icon.iconFontello-plus-alt 
+				//- 				span.i-name iconFontello-plus-alt
+				//- 				span.i-code 0xe8ae
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8af')
+				//- 				i.demo-icon.iconFontello-close-alt 
+				//- 				span.i-name iconFontello-close-alt
+				//- 				span.i-code 0xe8af
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b0')
+				//- 				i.demo-icon.iconFontello-check-alt 
+				//- 				span.i-name iconFontello-check-alt
+				//- 				span.i-code 0xe8b0
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b1')
+				//- 				i.demo-icon.iconFontello-zoom-out 
+				//- 				span.i-name iconFontello-zoom-out
+				//- 				span.i-code 0xe8b1
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b2')
+				//- 				i.demo-icon.iconFontello-zoom-in 
+				//- 				span.i-name iconFontello-zoom-in
+				//- 				span.i-code 0xe8b2
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b3')
+				//- 				i.demo-icon.iconFontello-stop-alt 
+				//- 				span.i-name iconFontello-stop-alt
+				//- 				span.i-code 0xe8b3
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b4')
+				//- 				i.demo-icon.iconFontello-menu-square-alt 
+				//- 				span.i-name iconFontello-menu-square-alt
+				//- 				span.i-code 0xe8b4
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b5')
+				//- 				i.demo-icon.iconFontello-menu-circle-alt 
+				//- 				span.i-name iconFontello-menu-circle-alt
+				//- 				span.i-code 0xe8b5
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b6')
+				//- 				i.demo-icon.iconFontello-doc 
+				//- 				span.i-name iconFontello-doc
+				//- 				span.i-code 0xe8b6
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b7')
+				//- 				i.demo-icon.iconFontello-docs 
+				//- 				span.i-name iconFontello-docs
+				//- 				span.i-code 0xe8b7
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b8')
+				//- 				i.demo-icon.iconFontello-pencil-alt 
+				//- 				span.i-name iconFontello-pencil-alt
+				//- 				span.i-code 0xe8b8
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8b9')
+				//- 				i.demo-icon.iconFontello-folder 
+				//- 				span.i-name iconFontello-folder
+				//- 				span.i-code 0xe8b9
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ba')
+				//- 				i.demo-icon.iconFontello-folder-open 
+				//- 				span.i-name iconFontello-folder-open
+				//- 				span.i-code 0xe8ba
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8bb')
+				//- 				i.demo-icon.iconFontello-folder-add 
+				//- 				span.i-name iconFontello-folder-add
+				//- 				span.i-code 0xe8bb
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8bc')
+				//- 				i.demo-icon.iconFontello-folder-upload 
+				//- 				span.i-name iconFontello-folder-upload
+				//- 				span.i-code 0xe8bc
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8bd')
+				//- 				i.demo-icon.iconFontello-folder-download 
+				//- 				span.i-name iconFontello-folder-download
+				//- 				span.i-code 0xe8bd
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8be')
+				//- 				i.demo-icon.iconFontello-info 
+				//- 				span.i-name iconFontello-info
+				//- 				span.i-code 0xe8be
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8bf')
+				//- 				i.demo-icon.iconFontello-attention-circle 
+				//- 				span.i-name iconFontello-attention-circle
+				//- 				span.i-code 0xe8bf
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c0')
+				//- 				i.demo-icon.iconFontello-attention-oct 
+				//- 				span.i-name iconFontello-attention-oct
+				//- 				span.i-code 0xe8c0
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c1')
+				//- 				i.demo-icon.iconFontello-attention 
+				//- 				span.i-name iconFontello-attention
+				//- 				span.i-code 0xe8c1
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c2')
+				//- 				i.demo-icon.iconFontello-question-alt 
+				//- 				span.i-name iconFontello-question-alt
+				//- 				span.i-code 0xe8c2
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c3')
+				//- 				i.demo-icon.iconFontello-comment 
+				//- 				span.i-name iconFontello-comment
+				//- 				span.i-code 0xe8c3
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c4')
+				//- 				i.demo-icon.iconFontello-chat 
+				//- 				span.i-name iconFontello-chat
+				//- 				span.i-code 0xe8c4
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c5')
+				//- 				i.demo-icon.iconFontello-vol-mute 
+				//- 				span.i-name iconFontello-vol-mute
+				//- 				span.i-code 0xe8c5
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c6')
+				//- 				i.demo-icon.iconFontello-vol-low 
+				//- 				span.i-name iconFontello-vol-low
+				//- 				span.i-code 0xe8c6
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c7')
+				//- 				i.demo-icon.iconFontello-vol-high 
+				//- 				span.i-name iconFontello-vol-high
+				//- 				span.i-code 0xe8c7
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c8')
+				//- 				i.demo-icon.iconFontello-quotes-alt 
+				//- 				span.i-name iconFontello-quotes-alt
+				//- 				span.i-code 0xe8c8
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8c9')
+				//- 				i.demo-icon.iconFontello-clock 
+				//- 				span.i-name iconFontello-clock
+				//- 				span.i-code 0xe8c9
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ca')
+				//- 				i.demo-icon.iconFontello-lock 
+				//- 				span.i-name iconFontello-lock
+				//- 				span.i-code 0xe8ca
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8cb')
+				//- 				i.demo-icon.iconFontello-lock-open 
+				//- 				span.i-name iconFontello-lock-open
+				//- 				span.i-code 0xe8cb
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8cc')
+				//- 				i.demo-icon.iconFontello-key 
+				//- 				span.i-name iconFontello-key
+				//- 				span.i-code 0xe8cc
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8cd')
+				//- 				i.demo-icon.iconFontello-cloud 
+				//- 				span.i-name iconFontello-cloud
+				//- 				span.i-code 0xe8cd
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ce')
+				//- 				i.demo-icon.iconFontello-cloud-upload 
+				//- 				span.i-name iconFontello-cloud-upload
+				//- 				span.i-code 0xe8ce
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8cf')
+				//- 				i.demo-icon.iconFontello-cloud-download 
+				//- 				span.i-name iconFontello-cloud-download
+				//- 				span.i-code 0xe8cf
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d0')
+				//- 				i.demo-icon.iconFontello-bulb 
+				//- 				span.i-name iconFontello-bulb
+				//- 				span.i-code 0xe8d0
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d1')
+				//- 				i.demo-icon.iconFontello-gift 
+				//- 				span.i-name iconFontello-gift
+				//- 				span.i-code 0xe8d1
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d2')
+				//- 				i.demo-icon.iconFontello-home 
+				//- 				span.i-name iconFontello-home
+				//- 				span.i-code 0xe8d2
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d3')
+				//- 				i.demo-icon.iconFontello-camera 
+				//- 				span.i-name iconFontello-camera
+				//- 				span.i-code 0xe8d3
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d4')
+				//- 				i.demo-icon.iconFontello-mail 
+				//- 				span.i-name iconFontello-mail
+				//- 				span.i-code 0xe8d4
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d5')
+				//- 				i.demo-icon.iconFontello-cone 
+				//- 				span.i-name iconFontello-cone
+				//- 				span.i-code 0xe8d5
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d6')
+				//- 				i.demo-icon.iconFontello-ribbon 
+				//- 				span.i-name iconFontello-ribbon
+				//- 				span.i-code 0xe8d6
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d7')
+				//- 				i.demo-icon.iconFontello-bag 
+				//- 				span.i-name iconFontello-bag
+				//- 				span.i-code 0xe8d7
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d8')
+				//- 				i.demo-icon.iconFontello-cart 
+				//- 				span.i-name iconFontello-cart
+				//- 				span.i-code 0xe8d8
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8d9')
+				//- 				i.demo-icon.iconFontello-tag 
+				//- 				span.i-name iconFontello-tag
+				//- 				span.i-code 0xe8d9
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8da')
+				//- 				i.demo-icon.iconFontello-tags 
+				//- 				span.i-name iconFontello-tags
+				//- 				span.i-code 0xe8da
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8db')
+				//- 				i.demo-icon.iconFontello-trash 
+				//- 				span.i-name iconFontello-trash
+				//- 				span.i-code 0xe8db
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8dc')
+				//- 				i.demo-icon.iconFontello-cursor 
+				//- 				span.i-name iconFontello-cursor
+				//- 				span.i-code 0xe8dc
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8dd')
+				//- 				i.demo-icon.iconFontello-mic 
+				//- 				span.i-name iconFontello-mic
+				//- 				span.i-code 0xe8dd
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8de')
+				//- 				i.demo-icon.iconFontello-compass 
+				//- 				span.i-name iconFontello-compass
+				//- 				span.i-code 0xe8de
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8df')
+				//- 				i.demo-icon.iconFontello-location 
+				//- 				span.i-name iconFontello-location
+				//- 				span.i-code 0xe8df
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e0')
+				//- 				i.demo-icon.iconFontello-pushpin 
+				//- 				span.i-name iconFontello-pushpin
+				//- 				span.i-code 0xe8e0
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e1')
+				//- 				i.demo-icon.iconFontello-map 
+				//- 				span.i-name iconFontello-map
+				//- 				span.i-code 0xe8e1
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e2')
+				//- 				i.demo-icon.iconFontello-drawer 
+				//- 				span.i-name iconFontello-drawer
+				//- 				span.i-code 0xe8e2
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e3')
+				//- 				i.demo-icon.iconFontello-toolbox 
+				//- 				span.i-name iconFontello-toolbox
+				//- 				span.i-code 0xe8e3
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e4')
+				//- 				i.demo-icon.iconFontello-book 
+				//- 				span.i-name iconFontello-book
+				//- 				span.i-code 0xe8e4
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e5')
+				//- 				i.demo-icon.iconFontello-contacts 
+				//- 				span.i-name iconFontello-contacts
+				//- 				span.i-code 0xe8e5
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e6')
+				//- 				i.demo-icon.iconFontello-archive 
+				//- 				span.i-name iconFontello-archive
+				//- 				span.i-code 0xe8e6
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e7')
+				//- 				i.demo-icon.iconFontello-heart 
+				//- 				span.i-name iconFontello-heart
+				//- 				span.i-code 0xe8e7
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e8')
+				//- 				i.demo-icon.iconFontello-profile 
+				//- 				span.i-name iconFontello-profile
+				//- 				span.i-code 0xe8e8
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8e9')
+				//- 				i.demo-icon.iconFontello-group 
+				//- 				span.i-name iconFontello-group
+				//- 				span.i-code 0xe8e9
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ea')
+				//- 				i.demo-icon.iconFontello-grid-sm 
+				//- 				span.i-name iconFontello-grid-sm
+				//- 				span.i-code 0xe8ea
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8eb')
+				//- 				i.demo-icon.iconFontello-grid-lg 
+				//- 				span.i-name iconFontello-grid-lg
+				//- 				span.i-code 0xe8eb
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ec')
+				//- 				i.demo-icon.iconFontello-music 
+				//- 				span.i-name iconFontello-music
+				//- 				span.i-code 0xe8ec
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ed')
+				//- 				i.demo-icon.iconFontello-pause-alt 
+				//- 				span.i-name iconFontello-pause-alt
+				//- 				span.i-code 0xe8ed
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ee')
+				//- 				i.demo-icon.iconFontello-phone 
+				//- 				span.i-name iconFontello-phone
+				//- 				span.i-code 0xe8ee
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ef')
+				//- 				i.demo-icon.iconFontello-upload 
+				//- 				span.i-name iconFontello-upload
+				//- 				span.i-code 0xe8ef
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f0')
+				//- 				i.demo-icon.iconFontello-download 
+				//- 				span.i-name iconFontello-download
+				//- 				span.i-code 0xe8f0
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f1')
+				//- 				i.demo-icon.iconFontello-facebook 
+				//- 				span.i-name iconFontello-facebook
+				//- 				span.i-code 0xe8f1
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f2')
+				//- 				i.demo-icon.iconFontello-twitter 
+				//- 				span.i-name iconFontello-twitter
+				//- 				span.i-code 0xe8f2
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f3')
+				//- 				i.demo-icon.iconFontello-pinterest 
+				//- 				span.i-name iconFontello-pinterest
+				//- 				span.i-code 0xe8f3
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f4')
+				//- 				i.demo-icon.iconFontello-googleplus 
+				//- 				span.i-name iconFontello-googleplus
+				//- 				span.i-code 0xe8f4
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f5')
+				//- 				i.demo-icon.iconFontello-tumblr 
+				//- 				span.i-name iconFontello-tumblr
+				//- 				span.i-code 0xe8f5
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f6')
+				//- 				i.demo-icon.iconFontello-stumbleupon 
+				//- 				span.i-name iconFontello-stumbleupon
+				//- 				span.i-code 0xe8f6
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f7')
+				//- 				i.demo-icon.iconFontello-wordpress 
+				//- 				span.i-name iconFontello-wordpress
+				//- 				span.i-code 0xe8f7
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f8')
+				//- 				i.demo-icon.iconFontello-instagram 
+				//- 				span.i-name iconFontello-instagram
+				//- 				span.i-code 0xe8f8
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8f9')
+				//- 				i.demo-icon.iconFontello-dribbble 
+				//- 				span.i-name iconFontello-dribbble
+				//- 				span.i-code 0xe8f9
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8fa')
+				//- 				i.demo-icon.iconFontello-vimeo 
+				//- 				span.i-name iconFontello-vimeo
+				//- 				span.i-code 0xe8fa
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8fb')
+				//- 				i.demo-icon.iconFontello-linkedin 
+				//- 				span.i-name iconFontello-linkedin
+				//- 				span.i-code 0xe8fb
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8fc')
+				//- 				i.demo-icon.iconFontello-rss 
+				//- 				span.i-name iconFontello-rss
+				//- 				span.i-code 0xe8fc
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8fd')
+				//- 				i.demo-icon.iconFontello-deviantart 
+				//- 				span.i-name iconFontello-deviantart
+				//- 				span.i-code 0xe8fd
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8fe')
+				//- 				i.demo-icon.iconFontello-share 
+				//- 				span.i-name iconFontello-share
+				//- 				span.i-code 0xe8fe
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe8ff')
+				//- 				i.demo-icon.iconFontello-myspace 
+				//- 				span.i-name iconFontello-myspace
+				//- 				span.i-code 0xe8ff
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe900')
+				//- 				i.demo-icon.iconFontello-skype 
+				//- 				span.i-name iconFontello-skype
+				//- 				span.i-code 0xe900
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe901')
+				//- 				i.demo-icon.iconFontello-youtube 
+				//- 				span.i-name iconFontello-youtube
+				//- 				span.i-code 0xe901
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe902')
+				//- 				i.demo-icon.iconFontello-picassa 
+				//- 				span.i-name iconFontello-picassa
+				//- 				span.i-code 0xe902
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe903')
+				//- 				i.demo-icon.iconFontello-googledrive 
+				//- 				span.i-name iconFontello-googledrive
+				//- 				span.i-code 0xe903
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe904')
+				//- 				i.demo-icon.iconFontello-flickr 
+				//- 				span.i-name iconFontello-flickr
+				//- 				span.i-code 0xe904
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe905')
+				//- 				i.demo-icon.iconFontello-blogger 
+				//- 				span.i-name iconFontello-blogger
+				//- 				span.i-code 0xe905
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe906')
+				//- 				i.demo-icon.iconFontello-spotify 
+				//- 				span.i-name iconFontello-spotify
+				//- 				span.i-code 0xe906
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe907')
+				//- 				i.demo-icon.iconFontello-delicious 
+				//- 				span.i-name iconFontello-delicious
+				//- 				span.i-code 0xe907
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe908')
+				//- 				i.demo-icon.iconFontello-facebook-circle 
+				//- 				span.i-name iconFontello-facebook-circle
+				//- 				span.i-code 0xe908
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe909')
+				//- 				i.demo-icon.iconFontello-twitter-circle 
+				//- 				span.i-name iconFontello-twitter-circle
+				//- 				span.i-code 0xe909
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe90a')
+				//- 				i.demo-icon.iconFontello-pinterest-circle 
+				//- 				span.i-name iconFontello-pinterest-circle
+				//- 				span.i-code 0xe90a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe90b')
+				//- 				i.demo-icon.iconFontello-googleplus-circle 
+				//- 				span.i-name iconFontello-googleplus-circle
+				//- 				span.i-code 0xe90b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe90c')
+				//- 				i.demo-icon.iconFontello-tumblr-circle 
+				//- 				span.i-name iconFontello-tumblr-circle
+				//- 				span.i-code 0xe90c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe90d')
+				//- 				i.demo-icon.iconFontello-stumbleupon-circle 
+				//- 				span.i-name iconFontello-stumbleupon-circle
+				//- 				span.i-code 0xe90d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe90e')
+				//- 				i.demo-icon.iconFontello-wordpress-circle 
+				//- 				span.i-name iconFontello-wordpress-circle
+				//- 				span.i-code 0xe90e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe90f')
+				//- 				i.demo-icon.iconFontello-instagram-circle 
+				//- 				span.i-name iconFontello-instagram-circle
+				//- 				span.i-code 0xe90f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe910')
+				//- 				i.demo-icon.iconFontello-dribbble-circle 
+				//- 				span.i-name iconFontello-dribbble-circle
+				//- 				span.i-code 0xe910
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe911')
+				//- 				i.demo-icon.iconFontello-vimeo-circle 
+				//- 				span.i-name iconFontello-vimeo-circle
+				//- 				span.i-code 0xe911
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe912')
+				//- 				i.demo-icon.iconFontello-linkedin-circle 
+				//- 				span.i-name iconFontello-linkedin-circle
+				//- 				span.i-code 0xe912
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe913')
+				//- 				i.demo-icon.iconFontello-rss-circle 
+				//- 				span.i-name iconFontello-rss-circle
+				//- 				span.i-code 0xe913
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe914')
+				//- 				i.demo-icon.iconFontello-deviantart-circle 
+				//- 				span.i-name iconFontello-deviantart-circle
+				//- 				span.i-code 0xe914
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe915')
+				//- 				i.demo-icon.iconFontello-share-circle 
+				//- 				span.i-name iconFontello-share-circle
+				//- 				span.i-code 0xe915
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe916')
+				//- 				i.demo-icon.iconFontello-gmyspace-circle 
+				//- 				span.i-name iconFontello-gmyspace-circle
+				//- 				span.i-code 0xe916
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe917')
+				//- 				i.demo-icon.iconFontello-skype-circle 
+				//- 				span.i-name iconFontello-skype-circle
+				//- 				span.i-code 0xe917
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe918')
+				//- 				i.demo-icon.iconFontello-youtube-circle 
+				//- 				span.i-name iconFontello-youtube-circle
+				//- 				span.i-code 0xe918
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe919')
+				//- 				i.demo-icon.iconFontello-picassa-circle 
+				//- 				span.i-name iconFontello-picassa-circle
+				//- 				span.i-code 0xe919
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe91a')
+				//- 				i.demo-icon.iconFontello-googledrive-circle 
+				//- 				span.i-name iconFontello-googledrive-circle
+				//- 				span.i-code 0xe91a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe91b')
+				//- 				i.demo-icon.iconFontello-flickr-circle 
+				//- 				span.i-name iconFontello-flickr-circle
+				//- 				span.i-code 0xe91b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe91c')
+				//- 				i.demo-icon.iconFontello-blogger-circle 
+				//- 				span.i-name iconFontello-blogger-circle
+				//- 				span.i-code 0xe91c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe91d')
+				//- 				i.demo-icon.iconFontello-spotify-circle 
+				//- 				span.i-name iconFontello-spotify-circle
+				//- 				span.i-code 0xe91d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe91e')
+				//- 				i.demo-icon.iconFontello-delicious-circle 
+				//- 				span.i-name iconFontello-delicious-circle
+				//- 				span.i-code 0xe91e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe91f')
+				//- 				i.demo-icon.iconFontello-facebook-square 
+				//- 				span.i-name iconFontello-facebook-square
+				//- 				span.i-code 0xe91f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe920')
+				//- 				i.demo-icon.iconFontello-twitter-square 
+				//- 				span.i-name iconFontello-twitter-square
+				//- 				span.i-code 0xe920
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe921')
+				//- 				i.demo-icon.iconFontello-pinterest-square 
+				//- 				span.i-name iconFontello-pinterest-square
+				//- 				span.i-code 0xe921
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe922')
+				//- 				i.demo-icon.iconFontello-googleplus-square 
+				//- 				span.i-name iconFontello-googleplus-square
+				//- 				span.i-code 0xe922
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe923')
+				//- 				i.demo-icon.iconFontello-tumblr-square 
+				//- 				span.i-name iconFontello-tumblr-square
+				//- 				span.i-code 0xe923
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe924')
+				//- 				i.demo-icon.iconFontello-stumbleupon-square 
+				//- 				span.i-name iconFontello-stumbleupon-square
+				//- 				span.i-code 0xe924
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe925')
+				//- 				i.demo-icon.iconFontello-wordpress-square 
+				//- 				span.i-name iconFontello-wordpress-square
+				//- 				span.i-code 0xe925
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe926')
+				//- 				i.demo-icon.iconFontello-instagram-square 
+				//- 				span.i-name iconFontello-instagram-square
+				//- 				span.i-code 0xe926
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe927')
+				//- 				i.demo-icon.iconFontello-dribbble-square 
+				//- 				span.i-name iconFontello-dribbble-square
+				//- 				span.i-code 0xe927
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe928')
+				//- 				i.demo-icon.iconFontello-vimeo-square 
+				//- 				span.i-name iconFontello-vimeo-square
+				//- 				span.i-code 0xe928
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe929')
+				//- 				i.demo-icon.iconFontello-linkedin-square 
+				//- 				span.i-name iconFontello-linkedin-square
+				//- 				span.i-code 0xe929
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe92a')
+				//- 				i.demo-icon.iconFontello-rss-square 
+				//- 				span.i-name iconFontello-rss-square
+				//- 				span.i-code 0xe92a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe92b')
+				//- 				i.demo-icon.iconFontello-deviantart-square 
+				//- 				span.i-name iconFontello-deviantart-square
+				//- 				span.i-code 0xe92b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe92c')
+				//- 				i.demo-icon.iconFontello-share-square 
+				//- 				span.i-name iconFontello-share-square
+				//- 				span.i-code 0xe92c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe92d')
+				//- 				i.demo-icon.iconFontello-myspace-square 
+				//- 				span.i-name iconFontello-myspace-square
+				//- 				span.i-code 0xe92d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe92e')
+				//- 				i.demo-icon.iconFontello-skype-square 
+				//- 				span.i-name iconFontello-skype-square
+				//- 				span.i-code 0xe92e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe92f')
+				//- 				i.demo-icon.iconFontello-youtube-square 
+				//- 				span.i-name iconFontello-youtube-square
+				//- 				span.i-code 0xe92f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe930')
+				//- 				i.demo-icon.iconFontello-picassa-square 
+				//- 				span.i-name iconFontello-picassa-square
+				//- 				span.i-code 0xe930
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe931')
+				//- 				i.demo-icon.iconFontello-googledrive-square 
+				//- 				span.i-name iconFontello-googledrive-square
+				//- 				span.i-code 0xe931
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe932')
+				//- 				i.demo-icon.iconFontello-flickr-square 
+				//- 				span.i-name iconFontello-flickr-square
+				//- 				span.i-code 0xe932
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe933')
+				//- 				i.demo-icon.iconFontello-blogger-square 
+				//- 				span.i-name iconFontello-blogger-square
+				//- 				span.i-code 0xe933
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe934')
+				//- 				i.demo-icon.iconFontello-spotify-square 
+				//- 				span.i-name iconFontello-spotify-square
+				//- 				span.i-code 0xe934
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe935')
+				//- 				i.demo-icon.iconFontello-delicious-square 
+				//- 				span.i-name iconFontello-delicious-square
+				//- 				span.i-code 0xe935
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe936')
+				//- 				i.demo-icon.iconFontello-printer 
+				//- 				span.i-name iconFontello-printer
+				//- 				span.i-code 0xe936
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe937')
+				//- 				i.demo-icon.iconFontello-calculator 
+				//- 				span.i-name iconFontello-calculator
+				//- 				span.i-code 0xe937
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe938')
+				//- 				i.demo-icon.iconFontello-building 
+				//- 				span.i-name iconFontello-building
+				//- 				span.i-code 0xe938
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe939')
+				//- 				i.demo-icon.iconFontello-floppy 
+				//- 				span.i-name iconFontello-floppy
+				//- 				span.i-code 0xe939
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe93a')
+				//- 				i.demo-icon.iconFontello-drive 
+				//- 				span.i-name iconFontello-drive
+				//- 				span.i-code 0xe93a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe93b')
+				//- 				i.demo-icon.iconFontello-searc2 
+				//- 				span.i-name iconFontello-searc2
+				//- 				span.i-code 0xe93b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe93c')
+				//- 				i.demo-icon.iconFontello-id 
+				//- 				span.i-name iconFontello-id
+				//- 				span.i-code 0xe93c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe93d')
+				//- 				i.demo-icon.iconFontello-id-2 
+				//- 				span.i-name iconFontello-id-2
+				//- 				span.i-code 0xe93d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe93e')
+				//- 				i.demo-icon.iconFontello-puzzle 
+				//- 				span.i-name iconFontello-puzzle
+				//- 				span.i-code 0xe93e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe93f')
+				//- 				i.demo-icon.iconFontello-like 
+				//- 				span.i-name iconFontello-like
+				//- 				span.i-code 0xe93f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe940')
+				//- 				i.demo-icon.iconFontello-dislike 
+				//- 				span.i-name iconFontello-dislike
+				//- 				span.i-code 0xe940
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe941')
+				//- 				i.demo-icon.iconFontello-mug 
+				//- 				span.i-name iconFontello-mug
+				//- 				span.i-code 0xe941
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe942')
+				//- 				i.demo-icon.iconFontello-currency 
+				//- 				span.i-name iconFontello-currency
+				//- 				span.i-code 0xe942
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe943')
+				//- 				i.demo-icon.iconFontello-wallet 
+				//- 				span.i-name iconFontello-wallet
+				//- 				span.i-code 0xe943
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe944')
+				//- 				i.demo-icon.iconFontello-pens 
+				//- 				span.i-name iconFontello-pens
+				//- 				span.i-code 0xe944
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe945')
+				//- 				i.demo-icon.iconFontello-easel 
+				//- 				span.i-name iconFontello-easel
+				//- 				span.i-code 0xe945
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe946')
+				//- 				i.demo-icon.iconFontello-flowchart 
+				//- 				span.i-name iconFontello-flowchart
+				//- 				span.i-code 0xe946
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe947')
+				//- 				i.demo-icon.iconFontello-data 
+				//- 				span.i-name iconFontello-data
+				//- 				span.i-code 0xe947
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe948')
+				//- 				i.demo-icon.iconFontello-briefcase 
+				//- 				span.i-name iconFontello-briefcase
+				//- 				span.i-code 0xe948
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe949')
+				//- 				i.demo-icon.iconFontello-shield 
+				//- 				span.i-name iconFontello-shield
+				//- 				span.i-code 0xe949
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe94a')
+				//- 				i.demo-icon.iconFontello-percent 
+				//- 				span.i-name iconFontello-percent
+				//- 				span.i-code 0xe94a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe94b')
+				//- 				i.demo-icon.iconFontello-globe 
+				//- 				span.i-name iconFontello-globe
+				//- 				span.i-code 0xe94b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe94c')
+				//- 				i.demo-icon.iconFontello-globe-2 
+				//- 				span.i-name iconFontello-globe-2
+				//- 				span.i-code 0xe94c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe94d')
+				//- 				i.demo-icon.iconFontello-target 
+				//- 				span.i-name iconFontello-target
+				//- 				span.i-code 0xe94d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe94e')
+				//- 				i.demo-icon.iconFontello-hourglass 
+				//- 				span.i-name iconFontello-hourglass
+				//- 				span.i-code 0xe94e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe94f')
+				//- 				i.demo-icon.iconFontello-balance 
+				//- 				span.i-name iconFontello-balance
+				//- 				span.i-code 0xe94f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe950')
+				//- 				i.demo-icon.iconFontello-rook 
+				//- 				span.i-name iconFontello-rook
+				//- 				span.i-code 0xe950
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe951')
+				//- 				i.demo-icon.iconFontello-printer-alt 
+				//- 				span.i-name iconFontello-printer-alt
+				//- 				span.i-code 0xe951
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe952')
+				//- 				i.demo-icon.iconFontello-calculator-alt 
+				//- 				span.i-name iconFontello-calculator-alt
+				//- 				span.i-code 0xe952
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe953')
+				//- 				i.demo-icon.iconFontello-building-alt 
+				//- 				span.i-name iconFontello-building-alt
+				//- 				span.i-code 0xe953
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe954')
+				//- 				i.demo-icon.iconFontello-floppy-alt 
+				//- 				span.i-name iconFontello-floppy-alt
+				//- 				span.i-code 0xe954
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe955')
+				//- 				i.demo-icon.iconFontello-drive-alt 
+				//- 				span.i-name iconFontello-drive-alt
+				//- 				span.i-code 0xe955
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe956')
+				//- 				i.demo-icon.iconFontello-searc2-alt 
+				//- 				span.i-name iconFontello-searc2-alt
+				//- 				span.i-code 0xe956
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe957')
+				//- 				i.demo-icon.iconFontello-id-alt 
+				//- 				span.i-name iconFontello-id-alt
+				//- 				span.i-code 0xe957
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe958')
+				//- 				i.demo-icon.iconFontello-id-2-alt 
+				//- 				span.i-name iconFontello-id-2-alt
+				//- 				span.i-code 0xe958
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe959')
+				//- 				i.demo-icon.iconFontello-puzzle-alt 
+				//- 				span.i-name iconFontello-puzzle-alt
+				//- 				span.i-code 0xe959
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe95a')
+				//- 				i.demo-icon.iconFontello-like-alt 
+				//- 				span.i-name iconFontello-like-alt
+				//- 				span.i-code 0xe95a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe95b')
+				//- 				i.demo-icon.iconFontello-dislike-alt 
+				//- 				span.i-name iconFontello-dislike-alt
+				//- 				span.i-code 0xe95b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe95c')
+				//- 				i.demo-icon.iconFontello-mug-alt 
+				//- 				span.i-name iconFontello-mug-alt
+				//- 				span.i-code 0xe95c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe95d')
+				//- 				i.demo-icon.iconFontello-currency-alt 
+				//- 				span.i-name iconFontello-currency-alt
+				//- 				span.i-code 0xe95d
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe95e')
+				//- 				i.demo-icon.iconFontello-wallet-alt 
+				//- 				span.i-name iconFontello-wallet-alt
+				//- 				span.i-code 0xe95e
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe95f')
+				//- 				i.demo-icon.iconFontello-pens-alt 
+				//- 				span.i-name iconFontello-pens-alt
+				//- 				span.i-code 0xe95f
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe960')
+				//- 				i.demo-icon.iconFontello-easel-alt 
+				//- 				span.i-name iconFontello-easel-alt
+				//- 				span.i-code 0xe960
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe961')
+				//- 				i.demo-icon.iconFontello-flowchart-alt 
+				//- 				span.i-name iconFontello-flowchart-alt
+				//- 				span.i-code 0xe961
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe962')
+				//- 				i.demo-icon.iconFontello-data-alt 
+				//- 				span.i-name iconFontello-data-alt
+				//- 				span.i-code 0xe962
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe963')
+				//- 				i.demo-icon.iconFontello-briefcase-alt 
+				//- 				span.i-name iconFontello-briefcase-alt
+				//- 				span.i-code 0xe963
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe964')
+				//- 				i.demo-icon.iconFontello-shield-alt 
+				//- 				span.i-name iconFontello-shield-alt
+				//- 				span.i-code 0xe964
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe965')
+				//- 				i.demo-icon.iconFontello-percent-alt 
+				//- 				span.i-name iconFontello-percent-alt
+				//- 				span.i-code 0xe965
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe966')
+				//- 				i.demo-icon.iconFontello-globe-alt 
+				//- 				span.i-name iconFontello-globe-alt
+				//- 				span.i-code 0xe966
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe967')
+				//- 				i.demo-icon.iconFontello-mail-alt 
+				//- 				span.i-name iconFontello-mail-alt
+				//- 				span.i-code 0xe967
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe968')
+				//- 				i.demo-icon.iconFontello-ellipsis 
+				//- 				span.i-name iconFontello-ellipsis
+				//- 				span.i-code 0xe968
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe969')
+				//- 				i.demo-icon.iconFontello-visa 
+				//- 				span.i-name iconFontello-visa
+				//- 				span.i-code 0xe969
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe96a')
+				//- 				i.demo-icon.iconFontello-mastercard 
+				//- 				span.i-name iconFontello-mastercard
+				//- 				span.i-code 0xe96a
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe96b')
+				//- 				i.demo-icon.iconFontello-discover 
+				//- 				span.i-name iconFontello-discover
+				//- 				span.i-code 0xe96b
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe96c')
+				//- 				i.demo-icon.iconFontello-amex 
+				//- 				span.i-name iconFontello-amex
+				//- 				span.i-code 0xe96c
+				//- 			.col-md-4.col-lg-3.sg-iconItem(title='Code: 0xe96d')
+				//- 				i.demo-icon.iconFontello-paypal 
+				//- 				span.i-name iconFontello-paypal
+				//- 				span.i-code 0xe96d
+	a(href="#top").sg-topLink
+	script.
+		$(document).ready(function() {
+			// Function to convert rgb value to hex
+			function rgb2hex(rgb) {
+				rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+				function hex(x) {
+					return ("0" + parseInt(x).toString(16)).slice(-2);
+				}
+				return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+			}
+			// Get the color and convert the value to hex
+			$('.sg-color').each(function() {
+				var theColor = rgb2hex($(this).parent().css('color'));
+				$(this).text(theColor);
+			});
+			// Get the font size
+			$('.sg-size').each(function() {
+				var theSize = $(this).parent().css('font-size');
+				$(this).text(theSize);
+			});
+			// Get the font-family
+			$('.sg-fontFam').each(function() {
+				var theFontFam = $(this).parent().css('font-family');
+				$(this).text(theFontFam);
+			});
+			// Get the font-family
+			$('.sg-fontWeight').each(function() {
+				var theFontWeight = $(this).parent().css('font-weight');
+				$(this).text('Font-weight:' + theFontWeight);
+			});
+			// Get the font-family
+			$('.sg-bgColor').each(function() {
+				var thebackgroundColor = rgb2hex($(this).parent().css('background-color'));
+				$(this).text(thebackgroundColor);
+			});
+		});
+	script.
+		//scroll effect to any internal anchor links to give visual feedback of where users are in the document and that they have not been taken to another page
+		$(document).ready(function() {
+			$('a[href*=\\#]').click(function(e) {
+				if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+					e.preventDefault();
+					var $target = $(this.hash);
+					$target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+					if ($target.length) {
+						var targetOffset = $target.offset().top;
+						if ($(".style-nav").length) {
+							targetOffset = targetOffset - $(".style-nav").outerHeight(true);
+						}
+						$('html,body').animate({
+							scrollTop: targetOffset
+						}, 500);
+						return false;
+					}
+				}
+			});
+		});
+	script.
+		$(document).ready(function() {
+			$('body').append($("<div></div>").addClass('sg-pageMask'));
+
+				function closeMenu() {
+					$('body').removeClass('js-navActive');
+					$('.sg-navToggle').removeClass('js-active');
+					$('.sg-mainNav-item').removeClass('js-subActive');
+				}
+
+				function openMenu() {
+					$('body').toggleClass('js-navActive');
+					$('.sg-navToggle').toggleClass('js-active');
+				}
+				$('.sg-navToggle').click(function() {
+					openMenu();
+				});
+				$('a.sg-mainNav-link, a.sg-mainNav-subLink, .sg-pageMask').click(function() {
+					closeMenu();
+				});
+				$('span.sg-mainNav-link').click(function() {
+					if ($(this).closest('.sg-mainNav-item').hasClass('js-subActive')) {
+						$(this).closest('.sg-mainNav-item').removeClass('js-subActive');
+					} else {
+						$(this).closest('nav').find('.js-subActive').removeClass('js-subActive');
+						$(this).closest('.sg-mainNav-item').addClass('js-subActive');
+					}
+				});
+		});
+	script.
+		$(document).ready(function() {
+			var topDistance = $(window).scrollTop();
+			var headerHeight = $('.sg-header').outerHeight();
+
+
+			$(window).scroll(function() {
+				var lastPosition = $(this).scrollTop();
+					if (lastPosition > topDistance) {
+					// I have scrolled down
+					if ($(window).scrollTop() > headerHeight) {
+						// I have scrolled past the header
+						$('body').removeClass('js-headerFixed--down').addClass('js-headerFixed--up');
+						$('.sg-pageWrap').css('padding-top', headerHeight);
+					} else {
+						$('body').removeClass('js-headerFixed--down').removeClass('js-headerFixed--up');
+						$('.sg-pageWrap').css('padding-top', '');
+					}
+				} else {
+				// I have scrolled up
+					if ($(window).scrollTop() >= 1) {
+						$('body').addClass('js-headerFixed--down').removeClass('js-headerFixed--up');
+					} else {
+						$('body').removeClass('js-headerFixed--down').removeClass('js-headerFixed--up');
+						$('.sg-pageWrap').css('padding-top', '');
+					}
+			  }
+			  topDistance = lastPosition;
+			});
+		});
+	script.
+		$.fn.contrastColor = function() {
+		    return this.each(function() {
+		        var bg = $(this).css('background-color');
+		        //use first opaque parent bg if element is transparent
+		        if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') { 
+		            $(this).parents().each(function(){
+		                bg = $(this).css('background-color')
+		                if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false; 
+		            });
+		            //exit if all parents are transparent
+		            if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') return false;
+		        }
+		        //get r,g,b and decide
+		        var rgb = bg.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+		        var yiq = ((rgb[0]*299)+(rgb[1]*587)+(rgb[2]*114))/1000;
+		        if(yiq >= 128) $(this).removeClass('h-colorWhite');
+		        else $(this).addClass('h-colorWhite');
+		    });
+		};
+		$(".sg-example[class*='fill']").contrastColor();

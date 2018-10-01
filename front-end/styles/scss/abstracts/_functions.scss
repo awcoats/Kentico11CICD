@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+
+//add a function so we can capitalize a value for camelcase
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+@function to-string($value) {
+  @return inspect($value);
+}
+
+/*
+* Call the color palette modifiers for scss usage
+* USAGE (scss):
+	div {
+		color: palette(gray,500);
+		background-color: palette(gray,50);
+		border: 1px solid palette(gray,900);
+	}
+*/
+@function palette($palette, $shade: '500') {
+  @return map-get(map-get($palettes, $palette), $shade);
+}

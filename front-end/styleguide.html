@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="style/css/main.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.9.9/umd/popper.min.js"></script>
+    <script src="js/frontEnd.js"></script>
+    <title>clientsite.com Styleguide</title>
+  </head>
+  <body>
+    <div class="sg-pageWrap" id="top">
+      <div class="sg-header">
+        <div class="sg-navToggle">
+          <div class="sg-navIcon">
+            <div class="sg-navPatty"></div>
+            <div class="sg-navPatty"></div>
+            <div class="sg-navPatty"></div>
+            <div class="sg-navPatty"></div>
+            <div class="sg-navPatty"></div>
+            <div class="sg-navPatty"></div>
+          </div>
+        </div><span class="sg-headerTitle">clientsite.com Web Styleguide</span>
+      </div>
+      <ul class="sg-mainNav">
+        <li class="sg-mainNav-item"><a class="sg-mainNav-link" href="#intro">Intro</a></li>
+        <li class="sg-mainNav-item"><a class="sg-mainNav-link" href="#typography">Typography</a></li>
+        <li class="sg-mainNav-item"><a class="sg-mainNav-link" href="#palette">Palette</a></li>
+        <li class="sg-mainNav-item"><span class="sg-mainNav-link">Pattern Library</span>
+          <ul class="sg-mainNav-subNav">
+            <li class="sg-mainNav-subItem"><a class="sg-mainNav-subLink" href="#card">Card</a></li>
+          </ul>
+        </li>
+        <li class="sg-mainNav-item"><span class="sg-mainNav-link">Coding &amp; Content</span>
+          <ul class="sg-mainNav-subNav">
+            <li class="sg-mainNav-subItem"><a class="sg-mainNav-subLink" href="#namingConvention">Naming Convention</a></li>
+            <li class="sg-mainNav-subItem"><a class="sg-mainNav-subLink" href="#helpers">Helper Classes</a></li>
+          </ul>
+        </li>
+      </ul>
+      <main class="sg">
+        <section class="sg-styleSection" id="intro">
+          <h2 class="sg-styleSectionTitle">Intro</h2>
+          <p>This style guide is intended as a reference for content managers and developers to properly implement the styles, structures and methodology employed in the construction of the clientsite.com website.</p>
+          <h3>Overview of styleguide content:</h3>
+          <h4>Typography</h4>
+          <p>Font families, sizes and hex color values for headings and body text</p>
+          <hr class="sg-hr">
+          <h4>Palette</h4>
+          <p>Colors available on the site with their hex values</p>
+          <hr class="sg-hr">
+          <h4>Pattern Library</h4>
+          <p>Information about the various custom HTML components utilized on the site with example usage and code which can be copied/pasted</p>
+          <ul class="sg-blockList">
+            <li><span class="sg-iconInfo sg-colorInfo">Some items in the Pattern Library may require back end development to function properly</span></li>
+          </ul>
+          <hr class="sg-hr">
+          <h4>Coding &amp; Content</h4>
+          <p>This section of your styleguide contains important information in managing and expanding upon the HTML and CSS of your website.</p>
+          <ul class="sg-blockList">
+            <li><span class="sg-iconInfo sg-colorInfo">In addition to the helper classes documented here, the <a href="https://v4-alpha.getbootstrap.com/utilities/borders/"></a>
+                <u>Bootstrap 4 utility classes </u>are also available.</span></li>
+          </ul>
+        </section>
+        <section class="sg-styleSection" id="typography">
+          <h2 class="sg-styleSectionTitle">Typography</h2>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">H1</summary>
+            <H1>Heading 1<span class="sg-color"></span><span class="sg-size"></span><span class="sg-fontFam"></span></H1>
+            <summary class="sg-exampleSummary">H2</summary>
+            <H2>Heading 2<span class="sg-color"></span><span class="sg-size"></span><span class="sg-fontFam"></span></H2>
+            <summary class="sg-exampleSummary">H3</summary>
+            <H3>Heading 3<span class="sg-color"></span><span class="sg-size"></span><span class="sg-fontFam"></span></H3>
+            <summary class="sg-exampleSummary">H4</summary>
+            <H4>Heading 4<span class="sg-color"></span><span class="sg-size"></span><span class="sg-fontFam"></span></H4>
+            <summary class="sg-exampleSummary">H5</summary>
+            <H5>Heading 5<span class="sg-color"></span><span class="sg-size"></span><span class="sg-fontFam"></span></H5>
+            <summary class="sg-exampleSummary">H6</summary>
+            <H6>Heading 6<span class="sg-color"></span><span class="sg-size"></span><span class="sg-fontFam"></span></H6>
+            <pre class="sg-code" rel="HTML">&lt;h1&gt;...&lt;/h1&gt;<br>&lt;h2&gt;...&lt;/h2&gt;<br>&lt;h3&gt;...&lt;/h3&gt;<br>&lt;h4&gt;...&lt;/h4&gt;<br>&lt;h5&gt;...&lt;/h5&gt;<br>&lt;h6&gt;...&lt;/h6&gt;<br></pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">Paragraph/Body Text</summary>
+            <p><span class="sg-color"></span><span class="sg-size"></span><span class="sg-fontFam"></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore <a href="javascript:void(0)">linked text</a> magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <pre class="sg-code" rel="HTML">&lt;p&gt;...&lt;/p&gt;</pre>
+          </div>
+        </section>
+        <section class="sg-styleSection" id="palette">
+          <h2 class="sg-styleSectionTitle">Palette</h2>
+          <h3 class="sg-subHeading">Brand Colors</h3>
+          <p>This color palette contains automatically generated lightest to darkest shades based on Skykick Brand colors for creative flexibility.</p>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">Brand Blue</summary>
+            <ul class="sg-styleguide-colorList">
+              <li class="colorBrandBlueLightest"><span class="sg-colorGray">Lightest</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandBlueLighter"><span class="sg-colorGray">Lighter</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandBlueLight"><span class="sg-colorGray">Light</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandBlue"><span class="sg-colorGray">Base</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandBlueDark"><span class="sg-colorGray">Dark</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandBlueDarker"><span class="sg-colorGray">Darker</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandBlueDarkest"><span class="sg-colorGray">Darkest</span><span class="sg-colorGray sg-color"></span></li>
+            </ul>
+            <summary class="sg-exampleSummary">Brand Orange</summary>
+            <ul class="sg-styleguide-colorList">
+              <li class="colorBrandOrangeLightest"><span class="sg-colorGray">Lightest</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandOrangeLighter"><span class="sg-colorGray">Lighter</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandOrangeLight"><span class="sg-colorGray">Light</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandOrange"><span class="sg-colorGray">Base</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandOrangeDark"><span class="sg-colorGray">Dark</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandOrangeDarker"><span class="sg-colorGray">Darker</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandOrangeDarkest"><span class="sg-colorGray">Darkest</span><span class="sg-colorGray sg-color"></span></li>
+            </ul>
+            <summary class="sg-exampleSummary">Brand Purple</summary>
+            <ul class="sg-styleguide-colorList">
+              <li class="colorBrandPurpleLightest"><span class="sg-colorGray">Lightest</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandPurpleLighter"><span class="sg-colorGray">Lighter</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandPurpleLight"><span class="sg-colorGray">Light</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandPurple"><span class="sg-colorGray">Base</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandPurpleDark"><span class="sg-colorGray">Dark</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandPurpleDarker"><span class="sg-colorGray">Darker</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorBrandPurpleDarkest"><span class="sg-colorGray">Darkest</span><span class="sg-colorGray sg-color"></span></li>
+            </ul>
+            <summary class="sg-exampleSummary">Gray</summary>
+            <ul class="sg-styleguide-colorList">
+              <li class="colorGrayLightest"><span class="sg-colorGray">Lightest</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorGrayLighter"><span class="sg-colorGray">Lighter</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorGrayLight"><span class="sg-colorGray">Light</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorGray"><span class="sg-colorGray">Base</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorGrayDark"><span class="sg-colorGray">Dark</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorGrayDarker"><span class="sg-colorGray">Darker</span><span class="sg-colorGray sg-color"></span></li>
+              <li class="colorGrayDarkest"><span class="sg-colorGray">Darkest</span><span class="sg-colorGray sg-color"></span></li>
+            </ul>
+          </div>
+        </section>
+        <section class="sg-styleSection" id="card">
+          <h2 class="sg-styleSectionTitle">Card</h2>
+          <p>This would be a reusable, documented component</p>
+          <p>Here's some helpful info about this UI pattern/code snippet</p>
+          <ul class="sg-blockList">
+            <li><span class="sg-iconInfo sg-colorInfo">A helpful info point</span></li>
+            <li><span class="sg-iconAttention sg-colorWarning">An important message</span></li>
+            <li><span class="sg-iconAttention sg-colorDanger">An important ...er message</span></li>
+          </ul>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary"><span>Basic Usage</span></summary>
+            <p>example component here</p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;card&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+        </section>
+        <section class="sg-styleSection" id="namingConvention">
+          <h2 class="styleSectionTitle">Naming Convention</h2>
+          <p>This site uses a modified version of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" target="_blank">BEM</a> naming syntax for custom elements. The modified version used is based largely on <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/" target="_blank">Nicolas Gallagher's extended BEM syntax</a>. The intention is to make the classes more understandable for humans, scoped where necessary, and also easily selectable in editors.</p>
+          <ul class="sg-blockList">
+            <li><span class="sg-iconAttention sg-colorDanger">Note that class names composed of two or more words are written in <a href="http://msdn.microsoft.com/en-us/library/x2dbyw72%28v=vs.71%29.aspx" target="_blank">camelCase</a> as opposed to Gallagher's <a href="http://msdn.microsoft.com/en-us/library/x2dbyw72%28v=vs.71%29.aspx" target="_blank">PascalCase</a></span></li>
+            <li><span class="sg-iconAttention sg-colorDanger">Note the major difference from BEM is the use of hyphens as opposed to underscores preceeding a descendant in a class name </span></li>
+            <li><span class="sg-iconAttention sg-colorDanger">This naming convention is to be used on <strong>custom elements only </strong>not Bootstrap components </span></li>
+            <li><span class="sg-iconAttention sg-colorDanger">Each custom component should have it's own SCSS partial in style/scss/components </span></li>
+            <li><span class="sg-iconInfo sg-colorInfo">Very helpful article in dealing with some of the trickier aspects of this naming convention <a href="https://www.smashingmagazine.com/2016/06/battling-bem-extended-edition-common-problems-and-how-to-avoid-them/" target="_blank">Battling BEM (Extended Edition): 10 Common Problems And How To Avoid Them </a>by Smashing Magazine</span></li>
+          </ul>
+          <pre class="sg-code" rel="HTML">/* Component */
+.componentName {}
+
+/* Component modifier */
+.componentName--modifierName {}
+
+/* Component descendant */
+.componentName-descendant {}
+
+/* Component descendant modifier */
+.componentName-descendant--modifierName {}
+
+/* Component state (scoped to component) */
+.componentName.is-stateOfComponent {}</pre>
+          <p>Begin class names with the most abstract descriptor and then layer in specifics.</p>
+          <pre class="sg-code" rel="SCSS">/* Basic nav style */
+.nav {}
+
+/* The main nav of the site */
+.navMain {}
+
+/* The secondary nav of the site */
+.navSecondary {}
+
+/* The footer nav */
+.navFooter {}</pre>
+          <p>Class names should be reusable and descriptive. We use the multi-class pattern where by laying class names onto an element we can achieve many different and reusable styles.</p>
+          <pre class="sg-code" rel="SCSS">.button { /* basic button styles */ }
+.button--primary { /* styles specific to primary button */ }
+
+&lt;button class="button"&gt;...&lt;/button&gt;
+&lt;button class="button button--primary"&gt;...&lt;/button&gt;</pre>
+          <p>Use .is-stateName to reflect changes to a component's state. The state name must be camel case. <strong>Never style these classes directly; they should always be used as an adjoining class.</strong></p>
+          <p>This means that the same state names can be used in multiple contexts, but every component must define its own styles for the state (as they are scoped to the component).</p>
+          <pre class="sg-code" rel="SCSS">.tweet { /* ... */ }
+.tweet.is-expanded { /* ... */ }
+
+&lt;article class="tweet is-expanded"&gt;...&lt;/article&gt;</pre>
+        </section>
+        <section class="sg-styleSection" id="helpers">
+          <h2 class="sg-styleSectionTitle">Helper Classes</h2>
+          <p>Helper classes are trump classes that override existing CSS properties like text color, background color, etc.</p>
+          <ul class="sg-blockList">
+            <li><span class="sg-iconInfo sg-colorInfo">In addition to the helper classes documented here, the <a href="https://v4-alpha.getbootstrap.com/utilities/borders/"></a>
+                <u>Bootstrap 4 utility classes </u>have also been included.</span></li>
+          </ul>
+          <h3 class="sg-subHeading">Text Colors</h3>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandBlueLightest</summary>
+            <p class="colorBrandBlueLightest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandBlueLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandBlueLighter</summary>
+            <p class="colorBrandBlueLighter">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandBlueLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandBlueLight</summary>
+            <p class="colorBrandBlueLight">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandBlueLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandBlue</summary>
+            <p class="colorBrandBlue">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandBlue&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandBlueDark</summary>
+            <p class="colorBrandBlueDark">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandBlueDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandBlueDarker</summary>
+            <p class="colorBrandBlueDarker">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandBlueDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandBlueDarkest</summary>
+            <p class="colorBrandBlueDarkest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandBlueDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandOrangeLightest</summary>
+            <p class="colorBrandOrangeLightest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandOrangeLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandOrangeLighter</summary>
+            <p class="colorBrandOrangeLighter">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandOrangeLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandOrangeLight</summary>
+            <p class="colorBrandOrangeLight">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandOrangeLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandOrange</summary>
+            <p class="colorBrandOrange">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandOrange&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandOrangeDark</summary>
+            <p class="colorBrandOrangeDark">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandOrangeDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandOrangeDarker</summary>
+            <p class="colorBrandOrangeDarker">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandOrangeDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandOrangeDarkest</summary>
+            <p class="colorBrandOrangeDarkest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandOrangeDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandPurpleLightest</summary>
+            <p class="colorBrandPurpleLightest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandPurpleLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandPurpleLighter</summary>
+            <p class="colorBrandPurpleLighter">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandPurpleLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandPurpleLight</summary>
+            <p class="colorBrandPurpleLight">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandPurpleLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandPurple</summary>
+            <p class="colorBrandPurple">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandPurple&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandPurpleDark</summary>
+            <p class="colorBrandPurpleDark">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandPurpleDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandPurpleDarker</summary>
+            <p class="colorBrandPurpleDarker">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandPurpleDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorBrandPurpleDarkest</summary>
+            <p class="colorBrandPurpleDarkest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorBrandPurpleDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorGrayLightest</summary>
+            <p class="colorGrayLightest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorGrayLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorGrayLighter</summary>
+            <p class="colorGrayLighter">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorGrayLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorGrayLight</summary>
+            <p class="colorGrayLight">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorGrayLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorGray</summary>
+            <p class="colorGray">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorGray&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorGrayDark</summary>
+            <p class="colorGrayDark">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorGrayDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorGrayDarker</summary>
+            <p class="colorGrayDarker">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorGrayDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example">
+            <summary class="sg-exampleSummary">.colorGrayDarkest</summary>
+            <p class="colorGrayDarkest">Colors text<span class="sg-color"></span></p>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;colorGrayDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <h3 class="sg-subHeading">Background Colors</h3>
+          <div class="sg-example fillColorBrandBlueLightest">
+            <summary class="sg-exampleSummary">.fillColorBrandBlueLightest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandBlueLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandBlueLighter">
+            <summary class="sg-exampleSummary">.fillColorBrandBlueLighter</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandBlueLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandBlueLight">
+            <summary class="sg-exampleSummary">.fillColorBrandBlueLight</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandBlueLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandBlue">
+            <summary class="sg-exampleSummary">.fillColorBrandBlue</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandBlue&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandBlueDark">
+            <summary class="sg-exampleSummary">.fillColorBrandBlueDark</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandBlueDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandBlueDarker">
+            <summary class="sg-exampleSummary">.fillColorBrandBlueDarker</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandBlueDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandBlueDarkest">
+            <summary class="sg-exampleSummary">.fillColorBrandBlueDarkest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandBlueDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandOrangeLightest">
+            <summary class="sg-exampleSummary">.fillColorBrandOrangeLightest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandOrangeLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandOrangeLighter">
+            <summary class="sg-exampleSummary">.fillColorBrandOrangeLighter</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandOrangeLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandOrangeLight">
+            <summary class="sg-exampleSummary">.fillColorBrandOrangeLight</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandOrangeLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandOrange">
+            <summary class="sg-exampleSummary">.fillColorBrandOrange</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandOrange&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandOrangeDark">
+            <summary class="sg-exampleSummary">.fillColorBrandOrangeDark</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandOrangeDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandOrangeDarker">
+            <summary class="sg-exampleSummary">.fillColorBrandOrangeDarker</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandOrangeDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandOrangeDarkest">
+            <summary class="sg-exampleSummary">.fillColorBrandOrangeDarkest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandOrangeDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandPurpleLightest">
+            <summary class="sg-exampleSummary">.fillColorBrandPurpleLightest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandPurpleLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandPurpleLighter">
+            <summary class="sg-exampleSummary">.fillColorBrandPurpleLighter</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandPurpleLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandPurpleLight">
+            <summary class="sg-exampleSummary">.fillColorBrandPurpleLight</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandPurpleLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandPurple">
+            <summary class="sg-exampleSummary">.fillColorBrandPurple</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandPurple&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandPurpleDark">
+            <summary class="sg-exampleSummary">.fillColorBrandPurpleDark</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandPurpleDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandPurpleDarker">
+            <summary class="sg-exampleSummary">.fillColorBrandPurpleDarker</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandPurpleDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorBrandPurpleDarkest">
+            <summary class="sg-exampleSummary">.fillColorBrandPurpleDarkest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorBrandPurpleDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorGrayLightest">
+            <summary class="sg-exampleSummary">.fillColorGrayLightest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorGrayLightest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorGrayLighter">
+            <summary class="sg-exampleSummary">.fillColorGrayLighter</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorGrayLighter&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorGrayLight">
+            <summary class="sg-exampleSummary">.fillColorGrayLight</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorGrayLight&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorGray">
+            <summary class="sg-exampleSummary">.fillColorGray</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorGray&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorGrayDark">
+            <summary class="sg-exampleSummary">.fillColorGrayDark</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorGrayDark&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorGrayDarker">
+            <summary class="sg-exampleSummary">.fillColorGrayDarker</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorGrayDarker&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+          <div class="sg-example fillColorGrayDarkest">
+            <summary class="sg-exampleSummary">.fillColorGrayDarkest</summary>Applies background color<span class="sg-bgColor"></span>
+            <pre class="sg-code" rel="HTML">&lt;div class=&quot;fillColorGrayDarkest&quot;&gt;..&lt;/div&gt;</pre>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body><a class="sg-topLink" href="#top">
+    <script>
+      $(document).ready(function() {
+      	// Function to convert rgb value to hex
+      	function rgb2hex(rgb) {
+      		rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+      
+      		function hex(x) {
+      			return ("0" + parseInt(x).toString(16)).slice(-2);
+      		}
+      		return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+      	}
+      	// Get the color and convert the value to hex
+      	$('.sg-color').each(function() {
+      		var theColor = rgb2hex($(this).parent().css('color'));
+      		$(this).text(theColor);
+      	});
+      	// Get the font size
+      	$('.sg-size').each(function() {
+      		var theSize = $(this).parent().css('font-size');
+      		$(this).text(theSize);
+      	});
+      	// Get the font-family
+      	$('.sg-fontFam').each(function() {
+      		var theFontFam = $(this).parent().css('font-family');
+      		$(this).text(theFontFam);
+      	});
+      	// Get the font-family
+      	$('.sg-bgColor').each(function() {
+      		var thebackgroundColor = rgb2hex($(this).parent().css('background-color'));
+      		$(this).text(thebackgroundColor);
+      	});
+      });
+    </script>
+    <script>
+      //scroll effect to any internal anchor links to give visual feedback of where users are in the document and that they have not been taken to another page
+      $(document).ready(function() {
+      	$('a[href*=\\#]').click(function(e) {
+      		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      			e.preventDefault();
+      			var $target = $(this.hash);
+      			$target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+      			if ($target.length) {
+      				var targetOffset = $target.offset().top;
+      				if ($(".style-nav").length) {
+      					targetOffset = targetOffset - $(".style-nav").outerHeight(true);
+      				}
+      				$('html,body').animate({
+      					scrollTop: targetOffset
+      				}, 500);
+      				return false;
+      			}
+      		}
+      	});
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+      	$('body').append($("<div></div>").addClass('sg-pageMask'));
+      
+      		function closeMenu() {
+      			$('body').removeClass('js-navActive');
+      			$('.sg-navToggle').removeClass('js-active');
+      			$('.sg-mainNav-item').removeClass('js-subActive');
+      		}
+      
+      		function openMenu() {
+      			$('body').toggleClass('js-navActive');
+      			$('.sg-navToggle').toggleClass('js-active');
+      		}
+      		$('.sg-navToggle').click(function() {
+      			openMenu();
+      		});
+      		$('a.sg-mainNav-link, a.sg-mainNav-subLink, .sg-pageMask').click(function() {
+      			closeMenu();
+      		});
+      		$('span.sg-mainNav-link').click(function() {
+      			if ($(this).closest('.sg-mainNav-item').hasClass('js-subActive')) {
+      				$(this).closest('.sg-mainNav-item').removeClass('js-subActive');
+      			} else {
+      				$(this).closest('nav').find('.js-subActive').removeClass('js-subActive');
+      				$(this).closest('.sg-mainNav-item').addClass('js-subActive');
+      			}
+      		});
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+      	var topDistance = $(window).scrollTop();
+      	var headerHeight = $('.sg-header').outerHeight();
+      
+      
+      	$(window).scroll(function() {
+      		var lastPosition = $(this).scrollTop();
+      			if (lastPosition > topDistance) {
+      			// I have scrolled down
+      			if ($(window).scrollTop() > headerHeight) {
+      				// I have scrolled past the header
+      				$('body').removeClass('js-headerFixed--down').addClass('js-headerFixed--up');
+      				$('.sg-pageWrap').css('padding-top', headerHeight);
+      			} else {
+      				$('body').removeClass('js-headerFixed--down').removeClass('js-headerFixed--up');
+      				$('.sg-pageWrap').css('padding-top', '');
+      			}
+      		} else {
+      		// I have scrolled up
+      			if ($(window).scrollTop() >= 1) {
+      				$('body').addClass('js-headerFixed--down').removeClass('js-headerFixed--up');
+      			} else {
+      				$('body').removeClass('js-headerFixed--down').removeClass('js-headerFixed--up');
+      				$('.sg-pageWrap').css('padding-top', '');
+      			}
+      	  }
+      	  topDistance = lastPosition;
+      	});
+      });
+    </script></a>
+</html>
