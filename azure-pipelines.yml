@@ -21,7 +21,7 @@ steps:
   inputs:
     targetType: filePath
     filePath: '.\build.ps1'
-    arguments: '-Target CIBuild'  
+    arguments: '-Action CIBuild'  
     
   
 
