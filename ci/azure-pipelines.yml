@@ -43,6 +43,13 @@ steps:
     parallel: true # Optional
     #parallelCount: # Optional
 
+- task: PowerShell@2
+  displayName: Convert NUNit results from 3 to 2
+  inputs:
+    targetType: filePath
+    filePath: '.\ci\convertnunit3to2.ps1'
+    arguments: ''   
+
 - task: PublishTestResults@2
   displayName: Publish Unit Tests Results
   inputs:
