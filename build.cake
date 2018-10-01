@@ -65,7 +65,10 @@ Task("Clean")
 	WriteProgressMessage("Cleaning");
 	
 	// cleans output from front end
-	Gulp.Local.Execute(settings => settings.WithArguments("clean"));
+	if (!DirectoryExists("./node_modules/gulp"))
+	{
+		Gulp.Local.Execute(settings => settings.WithArguments("clean"));
+	}
 
 	// delete Precompiled web directory - otherwise deleted/ renamed files and directories
 	// remain in the directory.
