@@ -203,7 +203,10 @@ Task("UnitTests")
     .Does(() =>
 {
 	WriteProgressMessage("Running unit tests"); 
-	NUnit3(_unitTestsLocation);
+	NUnit3(_unitTestsLocation, new NUnit3Settings
+	{
+		OutputFile= "./server/Demo1.UnitTests/bin/"+_configuration+"/UnitTestsResults.xml";
+	});
 });
 
 
