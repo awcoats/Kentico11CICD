@@ -139,18 +139,18 @@ Task("InstallBuildTools")
 	// use a local version of gulp so different projects can use different versions of gulp.
 	// npm install rimraf -g
 	// rimraf node_modules
-	if (!DirectoryExists("./node_modules/gulp"))
-	{
-		Information("Installing local version of gulp.");
-		var settings = new NpmInstallSettings(){
-			Global = false,
-		};				
-		NpmInstall(settings);
-	}	
-	else
-	{
-		Information("Gulp already installed.");
-	}
+	// if (!DirectoryExists("./node_modules/gulp"))
+	// {
+	// 	Information("Installing local version of gulp.");
+	// 	var settings = new NpmInstallSettings(){
+	// 		Global = false,
+	// 	};				
+	// 	NpmInstall(settings);
+	// }	
+	// else
+	// {
+	// 	Information("Gulp already installed.");
+	// }
 });
 
 
@@ -164,9 +164,9 @@ Task("Build")
 	WriteProgressMessage("Building. Compiling C#"); 		
   
     MSBuild(_solutionFile, settings => settings.SetConfiguration(_configuration)
-		.SetMaxCpuCount(0)
-		.SetVerbosity(Verbosity.Minimal)
-		.UseToolVersion(MSBuildToolVersion.NET46));
+		//.SetMaxCpuCount(0)
+		.SetVerbosity(Verbosity.Minimal));
+		//.UseToolVersion(MSBuildToolVersion.NET46));
 });
 
 Task("CodeCoverage")
