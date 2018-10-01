@@ -65,7 +65,7 @@ Task("Clean")
 	WriteProgressMessage("Cleaning");
 	
 	// cleans output from front end
-	//Gulp.Local.Execute(settings => settings.WithArguments("clean"));
+	Gulp.Local.Execute(settings => settings.WithArguments("clean"));
 
 	// delete Precompiled web directory - otherwise deleted/ renamed files and directories
 	// remain in the directory.
@@ -139,18 +139,18 @@ Task("InstallBuildTools")
 	// use a local version of gulp so different projects can use different versions of gulp.
 	// npm install rimraf -g
 	// rimraf node_modules
-	// if (!DirectoryExists("./node_modules/gulp"))
-	// {
-	// 	Information("Installing local version of gulp.");
-	// 	var settings = new NpmInstallSettings(){
-	// 		Global = false,
-	// 	};				
-	// 	NpmInstall(settings);
-	// }	
-	// else
-	// {
-	// 	Information("Gulp already installed.");
-	// }
+	if (!DirectoryExists("./node_modules/gulp"))
+	{
+		Information("Installing local version of gulp.");
+		var settings = new NpmInstallSettings(){
+			Global = false,
+		};				
+		NpmInstall(settings);
+	}	
+	else
+	{
+		Information("Gulp already installed.");
+	}
 });
 
 
@@ -158,8 +158,8 @@ Task("Build")
 	.IsDependentOn("Restore-NuGet-Packages")	
     .Does(() =>
 {  
-	//WriteProgressMessage("Building. Running gulp tools"); 	
-	//Gulp.Local.Execute(settings => settings.WithArguments("build-prod"));
+	WriteProgressMessage("Building. Running gulp tools"); 	
+	Gulp.Local.Execute(settings => settings.WithArguments("js:compile"));
 
 	WriteProgressMessage("Building. Compiling C#"); 		
   
