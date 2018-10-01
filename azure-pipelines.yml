@@ -5,7 +5,9 @@
 
 pool:
   vmImage: 'VS2017-Win2016'
-
+  #name: myPrivateAgents
+  #demands: agent.os -equals Windows_NT
+  
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
@@ -32,7 +34,16 @@ steps:
     filePath: '.\build.ps1'
     arguments: '-Action CIBuild'  
 
-    - task: PublishTestResults@2
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory).\server\PrecompiledWeb' 
+    artifactName: 'PrecompiledWeb' 
+    #publishLocation: 'Container' # Options: container, filePath
+    #targetPath: # Required when publishLocation == FilePath
+    parallel: true # Optional
+    #parallelCount: # Optional
+
+- task: PublishTestResults@2
   displayName: Publish Unit Tests Results
   inputs:
     testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
