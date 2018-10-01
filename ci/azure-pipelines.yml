@@ -53,8 +53,8 @@ steps:
 - task: PublishTestResults@2
   displayName: Publish Unit Tests Results
   inputs:
-    testResultsFormat: NUnit
-    testResultsFiles: '**\TestResultsV2.xml' 
+    testRunner: NUnit
+    testResultsFiles: '**\TestResults.xml' 
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     mergeTestResults: false # Optional
     testRunTitle: # Optional
