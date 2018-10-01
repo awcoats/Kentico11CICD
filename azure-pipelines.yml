@@ -23,14 +23,19 @@ steps:
     filePath: '.\build.ps1'
     arguments: '-Action CIBuild'  
     
-  
+- task: PowerShell@2
+  displayName: Deploy
+  inputs:
+    targetType: filePath
+    filePath: '.\build.ps1'
+    arguments: ' -Action Deploy -PublishSettings .\etc\kenticocicddemo.PublishSettings'    
 
 # Publish Test Results to Azure Pipelines/TFS
-- task: PublishTestResults@2
-  displayName: Publish Unit Tests Results
-  inputs:
-    testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
-    testResultsFiles: '**/Test*.xml' 
+# - task: PublishTestResults@2
+#   displayName: Publish Unit Tests Results
+#   inputs:
+#     testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
+#     testResultsFiles: '**/Test*.xml' 
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     #mergeTestResults: false # Optional
     #testRunTitle: # Optional
