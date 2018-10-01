@@ -65,7 +65,7 @@ Task("Clean")
 	WriteProgressMessage("Cleaning");
 	
 	// cleans output from front end
-	if (!DirectoryExists("./node_modules/gulp"))
+	if (DirectoryExists("./node_modules/gulp"))
 	{
 		Gulp.Local.Execute(settings => settings.WithArguments("clean"));
 	}
