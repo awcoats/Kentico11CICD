@@ -15,6 +15,7 @@ variables:
 
 steps:
 
+
 #  
 # Cake CIBuild
 #
@@ -23,7 +24,7 @@ steps:
 #     Install nuget packages
 #     (if on local machine, install build tools)
 #     Clean
-#     Front-end build
+#     Front-end build (TODO)
 #     Build
 #     Unit Tests
 #     Publish
@@ -34,33 +35,12 @@ steps:
     filePath: '.\build.ps1'
     arguments: '-Action CIBuild'  
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '.\server\PrecompiledWeb' 
-    artifactName: 'PrecompiledWeb' 
-    #publishLocation: 'Container' # Options: container, filePath
-    #targetPath: # Required when publishLocation == FilePath
-    parallel: true # Optional
-    #parallelCount: # Optional
-
-- task: PowerShell@2
-  displayName: Convert NUNit results from 3 to 2
-  inputs:
-    targetType: filePath
-    filePath: '.\ci\convertnunit3to2.ps1'
-    arguments: ''   
-
 - task: PublishTestResults@2
   displayName: Publish Unit Tests Results
   inputs:
     testRunner: NUnit
-    testResultsFiles: '**\TestResults.xml' 
-    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-    mergeTestResults: false # Optional
-    testRunTitle: # Optional
-    buildPlatform: # Optional
-    buildConfiguration: # Optional
-    publishRunAttachments: true # Optional
+    testResultsFiles: '**\TestResults.xml'     
+ 
 
 # 
 # Deploy
@@ -72,30 +52,11 @@ steps:
     filePath: '.\build.ps1'
     arguments: ' -Action Deploy -PublishSettings .\etc\kenticocicddemo.PublishSettings'    
 
-# Publish Test Results to Azure Pipelines/TFS
-
-
-# - task: PowerShell@2
-#   displayName: Run Pester
-#   inputs:
-#     targetType: filePath
-#     filePath: '.\etc\demo.ps1'    
-
-# - task: VSTest@2
-#   inputs:
-#     platform: '$(buildPlatform)'
-#     configuration: '$(buildConfiguration)'
-
-## TODO deploy using MSDeploy
-
-## Cypress.io tests
-
-## Pester tests.
-# This updates pester not always necessary but worth noting
-# 1. URL exists
-# 2. HTTP exists
-# 3. HTTP redirect works
-# 4. Certificate thumbprint
-# 5. Expiration date
-
-
+#
+# Save artifcats
+#
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '.\server\PrecompiledWeb' 
+    artifactName: 'PrecompiledWeb' 
+    parallel: true
