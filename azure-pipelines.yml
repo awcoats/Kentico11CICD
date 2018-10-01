@@ -13,16 +13,29 @@ variables:
 
 steps:
 
+#  
+# Cake CIBuild
 #
-# Build.ps1 downloads nuget.exe
-#
+# Runs the following Cake Tasks
+#     Build.ps1 downloads nuget.exe
+#     Install nuget packages
+#     (if on local machine, install build tools)
+#     Clean
+#     Front-end build
+#     Build
+#     Unit Tests
+#     Publish
 - task: PowerShell@2
   displayName: Run Cake (Task="CIBUILD")
   inputs:
     targetType: filePath
     filePath: '.\build.ps1'
     arguments: '-Action CIBuild'  
-    
+
+
+# 
+# Deploy
+#
 - task: PowerShell@2
   displayName: Deploy
   inputs:
