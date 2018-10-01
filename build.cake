@@ -205,7 +205,7 @@ Task("UnitTests")
 	WriteProgressMessage("Running unit tests"); 
 	NUnit3(_unitTestsLocation, new NUnit3Settings
 	{
-		OutputFile= "./server/Demo1.UnitTests/bin/"+_configuration+"/UnitTestsResults.xml";
+		OutputFile= "./server/Demo1.UnitTests/bin/"+_configuration+"/UnitTestsResults.xml"
 	});
 });
 
