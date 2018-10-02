@@ -11,8 +11,8 @@ $TestScript=".\CI\PesterTests\demo.tests.ps1"
 
 #region Install Pester
 Write-Host "Installing Pester from PSGallery"
-#Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
-Install-Module -Name Pester -Force -SkipPublisherCheck
+Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+Install-Module -Name Pester -Scope CurrentUser -Force -SkipPublisherCheck
 #endregion
 
 #region call Pester script

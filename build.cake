@@ -212,6 +212,14 @@ Task("UnitTests")
 	});
 });
 
+Task("PesterTests")
+    .Description("Runs pester tests.")  
+    .Does(() =>
+{
+	WriteProgressMessage("Running Pester tests"); 
+	StartPowershellFile( new FilePath("./ci/PesterTests/Invoke-Pester.ps1"));
+});
+
 
 Task("Publish")
 	.Description("Publishes to PrecompiledWeb directory")  

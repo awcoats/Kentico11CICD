@@ -43,7 +43,7 @@ Param(
     [string]$Script = "build.cake",
     
     # Targets/Action
-    [ValidateSet("Build", "CIBuild", "UnitTests","IntegrationTests","CodeCoverage","Clean","Deploy","Publish","RestoreBackupDatabase","ESLint" ,"Slack","Restore-NuGet-Packages","InstallBuildTools")]
+    [ValidateSet("Build", "CIBuild", "PesterTests", "UnitTests", "IntegrationTests", "CodeCoverage", "Clean", "Deploy", "Publish", "RestoreBackupDatabase", "ESLint" , "Slack", "Restore-NuGet-Packages", "InstallBuildTools")]
     [string]$Action = "Default",
     
     # Configurations

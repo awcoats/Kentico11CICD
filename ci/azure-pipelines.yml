@@ -35,21 +35,17 @@ steps:
     filePath: '.\build.ps1'
     arguments: '-Action CIBuild'  
 
-- task: PowerShell@2
-  displayName: Run Pester Tests
-  inputs:
-    targetType: filePath
-    filePath: '.\ci\PesterTests\Invoke-Pester.ps1'
-
+#
+# publisg unit and pester results
+#
 - task: PublishTestResults@2
   displayName: Publish Unit Tests Results
   inputs:
     testRunner: NUnit
     testResultsFiles: '**\*TestResults.xml'     
- 
 
 # 
-# Deploy
+# Deploy 
 #
 - task: PowerShell@2
   displayName: Deploy
@@ -68,26 +64,3 @@ steps:
     parallel: true
 
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '.\ci' 
-    artifactName: 'CI' 
-    parallel: true  
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: 'build.cake' 
-    artifactName: 'build.cake' 
-    parallel: true
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: 'build.ps1' 
-    artifactName: 'build.ps1' 
-    parallel: true
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: 'bluemodus.cake' 
-    artifactName: 'bluemodus.cake' 
-    parallel: true
