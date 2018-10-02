@@ -142,18 +142,18 @@ Task("InstallBuildTools")
 	// use a local version of gulp so different projects can use different versions of gulp.
 	// npm install rimraf -g
 	// rimraf node_modules
-	if (!DirectoryExists("./node_modules/gulp"))
-	{
-		Information("Installing local version of gulp.");
-		var settings = new NpmInstallSettings(){
-			Global = false,
-		};				
-		NpmInstall(settings);
-	}	
-	else
-	{
-		Information("Gulp already installed.");
-	}
+	// if (!DirectoryExists("./node_modules/gulp"))
+	// {
+	// 	Information("Installing local version of gulp.");
+	// 	var settings = new NpmInstallSettings(){
+	// 		Global = false,
+	// 	};				
+	// 	NpmInstall(settings);
+	// }	
+	// else
+	// {
+	// 	Information("Gulp already installed.");
+	// }
 });
 
 
@@ -161,8 +161,8 @@ Task("Build")
 	.IsDependentOn("Restore-NuGet-Packages")	
     .Does(() =>
 {  
-	WriteProgressMessage("Building. Running gulp tools"); 	
-	Gulp.Local.Execute(settings => settings.WithArguments("js:compile"));
+	//WriteProgressMessage("Building. Running gulp tools"); 	
+	//Gulp.Local.Execute(settings => settings.WithArguments("js:compile"));
 
 	WriteProgressMessage("Building. Compiling C#"); 		
   
