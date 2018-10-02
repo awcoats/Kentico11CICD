@@ -47,12 +47,19 @@ steps:
 # 
 # Deploy 
 #
+
+# Download Secure File
+# Download a secure file to a temporary location on the build or release agent
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'kenticocicddemo.PublishSettings'
+
 - task: PowerShell@2
   displayName: Deploy
   inputs:
     targetType: filePath
     filePath: '.\build.ps1'
-    arguments: ' -Action Deploy -PublishSettings .\etc\kenticocicddemo.PublishSettings'    
+    arguments: ' -Action Deploy -PublishSettings $(Agent.TempDirectory)/kenticocicddemo.PublishSettings'    
 
 #
 # Save artifcats
