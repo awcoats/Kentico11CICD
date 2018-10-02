@@ -67,20 +67,27 @@ steps:
     artifactName: 'PrecompiledWeb' 
     parallel: true
 
+
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '.\server\PrecompiledWeb' 
-    artifactName: 'ci' 
+    pathtoPublish: '.\ci' 
+    artifactName: 'CI' 
+    parallel: true  
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: 'build.cake' 
+    artifactName: 'build.cake' 
     parallel: true
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '.\server\PrecompiledWeb' 
-    artifactName: 'build.*' 
-    parallel: true  
-    
+    pathtoPublish: 'build.ps1' 
+    artifactName: 'build.ps1' 
+    parallel: true
+
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '.\server\PrecompiledWeb' 
-    artifactName: 'bluemodus.*' 
+    pathtoPublish: 'bluemodus.cake' 
+    artifactName: 'bluemodus.cake' 
     parallel: true
