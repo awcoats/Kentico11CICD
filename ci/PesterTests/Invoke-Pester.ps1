@@ -18,7 +18,7 @@ Install-Module -Name Pester -Force -Scope CurrentUser -SkipPublisherCheck
 #region call Pester script
 Write-Host "Calling Pester test script"
 #Invoke-Pester -Script $TestScript -PassThru
-$result = Invoke-Pester -Script $TestScript -PassThru -OutputFile ".\ci\PesterTests\Pester-TestResults.xml"  -OutputFormat LegacyNUnitXml
+$result = Invoke-Pester -Script $TestScript -PassThru -OutputXml ".\ci\PesterTests\Pester-TestResults.xml"
 if ($result.failedCount -ne 0) { 
     Write-Error "Pester returned errors"
 }
