@@ -35,11 +35,17 @@ steps:
     filePath: '.\build.ps1'
     arguments: '-Action CIBuild'  
 
+- task: PowerShell@2
+  displayName: Run Pester Tests
+  inputs:
+    targetType: filePath
+    filePath: '.\ci\PesterTests\Invoke-Pester.ps1'
+
 - task: PublishTestResults@2
   displayName: Publish Unit Tests Results
   inputs:
     testRunner: NUnit
-    testResultsFiles: '**\TestResults.xml'     
+    testResultsFiles: '**\*TestResults.xml'     
  
 
 # 
