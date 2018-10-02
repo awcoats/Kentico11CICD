@@ -66,3 +66,8 @@ steps:
     pathtoPublish: '.\server\PrecompiledWeb' 
     artifactName: 'PrecompiledWeb' 
     parallel: true
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '.\server\PrecompiledWeb' 
+    artifactName: 'ci' 
+    parallel: true
