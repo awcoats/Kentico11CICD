@@ -11,14 +11,14 @@ $TestScript=".\CI\PesterTests\demo.tests.ps1"
 
 #region Install Pester
 Write-Host "Installing Pester from PSGallery"
-Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
-Install-Module -Name Pester -Force -Scope CurrentUser -SkipPublisherCheck
+#Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+Install-Module -Name Pester -Force -SkipPublisherCheck
 #endregion
 
 #region call Pester script
 Write-Host "Calling Pester test script"
 #Invoke-Pester -Script $TestScript -PassThru
-$result = Invoke-Pester -Script $TestScript -PassThru -OutputXml ".\ci\PesterTests\Pester-TestResults.xml"
+$result = Invoke-Pester -Script $TestScript -PassThru -OutputFile ".\ci\PesterTests\Pester-TestResults.xml" -OutputFormat NUnitXML
 if ($result.failedCount -ne 0) { 
     Write-Error "Pester returned errors"
 }
