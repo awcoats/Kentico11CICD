@@ -254,10 +254,12 @@ Task("Publish")
 	}
 	CreateDirectory("./artifacts");
 	CreateDirectory("./artifacts/server");
+	CreateDirectory("./artifacts/server/Demo1.Web");
 	MoveDirectory("./server/precompiledweb","./artifacts/server/precompiledWeb");
 	CopyFiles("./build.ps1","./artifacts/");
 	CopyFiles("./build.cake","./artifacts/");
 	CopyFiles("./BlueModus.cake","./artifacts");
+	CopyFiles("./server/Demo1.Web/Web.*.config","./artifacts/server/Demo1.Web/");
 
 	// Copy CI files over to the PrecompiledWeb directory, this way they do not have to be part
 	// of the VisualStudio project.
