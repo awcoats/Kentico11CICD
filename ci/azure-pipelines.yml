@@ -66,7 +66,7 @@ steps:
 #
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '.\server\PrecompiledWeb' 
+    pathtoPublish: '.\artifacts' 
     artifactName: 'PrecompiledWeb' 
     parallel: true
 
