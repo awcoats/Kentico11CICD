@@ -247,6 +247,10 @@ Task("Publish")
 	// reset TMP environment variable back to what it was			
 	Environment.SetEnvironmentVariable("TMP",tmp);
 
+	//
+	// create an artifacts directory with everything in it,
+	// so it can easily be packaged 
+	//
 	// get the precompiledWeb directory and cake scripts in the desired structure.
 	if (DirectoryExists("./artifacts/"))
 	{
@@ -256,10 +260,12 @@ Task("Publish")
 	CreateDirectory("./artifacts/server");
 	CreateDirectory("./artifacts/server/Demo1.Web");
 	MoveDirectory("./server/precompiledweb","./artifacts/server/precompiledWeb");
+	//TODO copy CI files.
 	CopyDirectory("./tools","./artifacts/tools");
 	CopyFiles("./build.ps1","./artifacts/");
 	CopyFiles("./build.cake","./artifacts/");
 	CopyFiles("./BlueModus.cake","./artifacts");
+	CopyFile("./server/Demo1.Web/Web.config","./artifacts/server/Demo1.Web/web.config");
 	CopyFiles("./server/Demo1.Web/Web.*.config","./artifacts/server/Demo1.Web/");
 
 	// Copy CI files over to the PrecompiledWeb directory, this way they do not have to be part
