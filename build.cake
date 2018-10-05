@@ -268,8 +268,8 @@ Task("Publish")
 	CopyFiles("./build.ps1","./artifacts/");
 	CopyFiles("./build.cake","./artifacts/");
 	CopyFiles("./BlueModus.cake","./artifacts");
-	CopyFile(_webSiteFolder+"/Web.config","./artifacts/"+_webSiteFolder+"web.config");
-	CopyFiles(_webSiteFolder+"/Demo1.Web/Web.*.config","./artifacts/"+_webSiteFolder+"/Demo1.Web/");
+	CopyFile(_webSiteFolder+"/Web.config","./artifacts/"+_webSiteFolder+"/web.config");
+	CopyFiles(_webSiteFolder+"/Web.*.config","./artifacts/"+_webSiteFolder);
 
 	// Copy CI files over to the PrecompiledWeb directory, this way they do not have to be part
 	// of the VisualStudio project.
