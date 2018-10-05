@@ -299,7 +299,7 @@ Task("Deploy")
 	var source = File(_webSiteFolder + "/web.config");	
 	var tranform = File(string.Format(_webSiteFolder + "/Web.{0}.config",_deploymentEnviroment));
 	var dest = File(string.Format(_publishFolder + "/web.config"));	
-	XdtTransformConfig(source, tranform, dest);
+	//XdtTransformConfig(source, tranform, dest);
 
 	// commented out because slows build down.
 	// TODO: pass a switch in via PowerShell to turn this on/off
@@ -360,23 +360,23 @@ Task("Deploy")
 
 	MSDeployUsingPublishSettingsFile(publishDir.FullPath, _publishSettings, doNotDeleteRule);
 			
-	if (_deploymentEnviroment.ToLowerInvariant()=="dev" && isDev1)
-	{
-		RunKenticoWebJob("ContinuousIntegration", _publishSettings);
-	}
-	else
-	{
-		Information("Skipping running Kentico ContinuousIntegration");
-	}
+	// if (_deploymentEnviroment.ToLowerInvariant()=="dev" && isDev1)
+	// {
+	// 	RunKenticoWebJob("ContinuousIntegration", _publishSettings);
+	// }
+	// else
+	// {
+	// 	Information("Skipping running Kentico ContinuousIntegration");
+	// }
 
-	if (_isTeamCityBuild)
-	{
-		var webSiteUrl = XmlPeek(_publishSettings, "/publishData/publishProfile[@publishMethod='MSDeploy']/@destinationAppUrl");
-		var siteName = XmlPeek(_publishSettings, "/publishData/publishProfile[@publishMethod='MSDeploy']/@msdeploySite");
+	// if (_isTeamCityBuild)
+	// {
+	// 	var webSiteUrl = XmlPeek(_publishSettings, "/publishData/publishProfile[@publishMethod='MSDeploy']/@destinationAppUrl");
+	// 	var siteName = XmlPeek(_publishSettings, "/publishData/publishProfile[@publishMethod='MSDeploy']/@msdeploySite");
 
-		var slackMessage ="A new build of "+siteName+" has been deployed to <"+webSiteUrl+"|"+_deploymentEnviroment+">";
-		SlackBuildStatus(_slackHookUrl, _deploymentEnviroment, slackMessage);
-	}
+	// 	var slackMessage ="A new build of "+siteName+" has been deployed to <"+webSiteUrl+"|"+_deploymentEnviroment+">";
+	// 	SlackBuildStatus(_slackHookUrl, _deploymentEnviroment, slackMessage);
+	// }
 });
 
 
