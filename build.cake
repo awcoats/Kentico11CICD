@@ -300,7 +300,7 @@ Task("Deploy")
 	var source = File(_webSiteFolder + "/web.config");	
 	var tranform = File(string.Format(_webSiteFolder + "/Web.{0}.config",_deploymentEnviroment));
 	var dest = File(string.Format(_publishFolder + "/web.config"));	
-	//XdtTransformConfig(source, tranform, dest);
+	XdtTransformConfig(source, tranform, dest);
 
 	// commented out because slows build down.
 	// TODO: pass a switch in via PowerShell to turn this on/off
