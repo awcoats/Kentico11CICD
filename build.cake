@@ -247,6 +247,15 @@ Task("Publish")
 	// reset TMP environment variable back to what it was			
 	Environment.SetEnvironmentVariable("TMP",tmp);
 
+	// get the precompiledWeb directory and cake scripts in the desired structure.
+	DeleteDirectory("./artifacts",new  DeleteDirectorySettings(){Recursive=true, Force=true});
+	CreateDirectory("./artifacts");
+	CreateDirectory("./artifacts/server");
+	MoveDirectory("./server/precompiledweb","./artifacts/server/precompiledWeb");
+	CopyFiles("./build.ps1","./artifacts/");
+	CopyFiles("./build.cake","./artifacts/");
+	CopyFiles("./BlueModus.cake","./artifacts");
+
 	// Copy CI files over to the PrecompiledWeb directory, this way they do not have to be part
 	// of the VisualStudio project.
 
