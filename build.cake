@@ -12,7 +12,7 @@
 #tool "nuget:?package=NUnit.ConsoleRunner"
 
 using System.Net;
-
+using System.IO;
 //////////////////////////////////////////////////////////////////////
 // VARIABLES
 //////////////////////////////////////////////////////////////////////
@@ -252,21 +252,24 @@ Task("Publish")
 	// so it can easily be packaged 
 	//
 	// get the precompiledWeb directory and cake scripts in the desired structure.
-	if (DirectoryExists("./artifacts/"))
+	var artifactsDir = "./artifacts";
+	if (DirectoryExists(artifactsDir))
 	{
-		DeleteDirectory("./artifacts",new  DeleteDirectorySettings(){Recursive=true, Force=true});
+		DeleteDirectory(artifactsDir,new  DeleteDirectorySettings(){Recursive=true, Force=true});
 	}
+	
+	Information("Publishing artifacts for Azure");
 	CreateDirectory("./artifacts");
 	CreateDirectory("./artifacts/server");
-	CreateDirectory("./artifacts/server/Demo1.Web");
+	CreateDirectory("./artifacts/"+_webSiteFolder);
 	MoveDirectory("./server/precompiledweb","./artifacts/server/precompiledWeb");
 	//TODO copy CI files.
 	CopyDirectory("./tools","./artifacts/tools");
 	CopyFiles("./build.ps1","./artifacts/");
 	CopyFiles("./build.cake","./artifacts/");
 	CopyFiles("./BlueModus.cake","./artifacts");
-	CopyFile("./server/Demo1.Web/Web.config","./artifacts/server/Demo1.Web/web.config");
-	CopyFiles("./server/Demo1.Web/Web.*.config","./artifacts/server/Demo1.Web/");
+	CopyFile(_webSiteFolder+"/Web.config","./artifacts/"+_webSiteFolder+"web.config");
+	CopyFiles(_webSiteFolder+"/Demo1.Web/Web.*.config","./artifacts/"+_webSiteFolder+"/Demo1.Web/");
 
 	// Copy CI files over to the PrecompiledWeb directory, this way they do not have to be part
 	// of the VisualStudio project.
