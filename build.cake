@@ -256,6 +256,7 @@ Task("Publish")
 	CreateDirectory("./artifacts/server");
 	CreateDirectory("./artifacts/server/Demo1.Web");
 	MoveDirectory("./server/precompiledweb","./artifacts/server/precompiledWeb");
+	CopyDirectory("./tools","./artifacts/tools");
 	CopyFiles("./build.ps1","./artifacts/");
 	CopyFiles("./build.cake","./artifacts/");
 	CopyFiles("./BlueModus.cake","./artifacts");
